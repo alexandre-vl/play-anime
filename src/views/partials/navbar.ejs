@@ -30,7 +30,7 @@
             <div class="support-search">
                 <div class="search-bar">
                     <div class="bar-container">
-                        <input type="text" placeholder="Fast search..." onkeyup="sendData(this)" onfocus="myFunction()" />
+                        <input type="text" placeholder="Fast search..." onkeyup="sendData(this)" onfocus="showSearch()" />
                     </div>
                     <section id="searchResults"></section>
                 </div>
@@ -75,11 +75,11 @@
             })
         }
     }
-    function myFunction() {
+    function showSearch() {
         document.getElementById("searchResults").style.display = "block";
     }
 
-    function myFunction2() {
+    function hideSearch() {
         document.getElementById("searchResults").style.display = "none";
     }
 </script>

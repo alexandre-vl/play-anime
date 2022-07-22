@@ -1,4 +1,27 @@
 <%- include('partials/header') -%>
 <%- include('partials/navbar') -%>
 
+<section class="splide" aria-label="Splide Basic HTML Example">
+    <div class="splide__track">
+        <ul class="splide__list">
+            <li class="splide__slide">Slide 01</li>
+            <li class="splide__slide">Slide 02</li>
+            <li class="splide__slide">Slide 03</li>
+        </ul>
+    </div>
+    <script>
+        const slider = new Splide('.splide', {
+            type: 'loop',
+            responsive: true,
+            speed: 1000,
+            drag: true,
+            swipe: true,
+            touch: true,
+            keyboard: true,
+            scrollbar: true,
+            scrollbarType: 'slide',
+        }).mount();
+    </script>
+</section>
+
 <%- include('partials/footer') -%>

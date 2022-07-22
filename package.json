@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/alexandre-vl/discord-auth#readme",
   "dependencies": {
+    "@glidejs/glide": "^3.5.2",
     "connect-mongo": "^3.2.0",
     "cors": "^2.8.5",
     "discord-oauth2": "^2.10.0",
