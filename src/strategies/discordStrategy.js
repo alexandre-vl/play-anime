@@ -3,12 +3,10 @@ const passport = require('passport');
 const DiscordUser = require('../models/DiscordUser');
 
 passport.serializeUser((user, done) => {
-    console.log("Serialize");
     done(null, user.id)
 });
 
 passport.deserializeUser(async (id, done) => {
-    console.log("Deserializing");
     const user = await DiscordUser.findById(id);
     if(user)
         done(null, user);

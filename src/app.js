@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3001;
 const session = require('express-session');
@@ -19,10 +20,13 @@ db.then(() => {
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cors());
 
 // Routes
 const authRoute = require('./routes/auth');
 const dashboardRoute = require('./routes/dashboard');
+const movieRoute = require('./routes/movies');
+const searchRoute = require('./routes/search');
 
 app.use(session({
     secret: process.env.CLIENT_SECRET,
@@ -48,6 +52,8 @@ app.use(passport.session());
 // Middleware Routes
 app.use('/auth', authRoute);
 app.use('/dashboard', dashboardRoute);
+app.use('/api', movieRoute);
+app.use('/search', searchRoute);
 
 app.get('/', (req, res) => {
     res.render('home', {user: req.user, logged: !!req.user });

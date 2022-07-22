@@ -1,7 +1,7 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item" href="/">
-            <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/9/98/Discord_logo.svg/2560px-Discord_logo.svg.png" width="112" height="28">
+            <img src="/img/anime-logo.png" width="112" height="28">
         </a>
 
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -18,32 +18,127 @@
             </a>
 
             <a class="navbar-item">
-                Documentation
+                Film
             </a>
 
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">
-                    More
-                </a>
-
-                <div class="navbar-dropdown">
-                    <a class="navbar-item">
-                        About
-                    </a>
-                    <a class="navbar-item">
-                        Jobs
-                    </a>
-                    <a class="navbar-item">
-                        Contact
-                    </a>
-                    <hr class="navbar-divider">
-                    <a class="navbar-item">
-                        Report an issue
-                    </a>
-                </div>
-            </div>
+            <a class="navbar-item">
+                Series
+            </a>
         </div>
 
-        <%- include('../partials/login-button') -%>
+        <div class="navbar-end">
+            <div class="support-search">
+                <div class="search-bar">
+                    <div class="bar-container">
+                        <input type="text" placeholder="Fast search..." onkeyup="sendData(this)" onfocus="myFunction()" />
+                    </div>
+                    <section id="searchResults"></section>
+                </div>
+            </div>
+
+            <%- include('../partials/login-button') -%>
+        </div>
+
+
     </div>
 </nav>
+
+<script>
+    function sendData(e) {
+        const searchResults = document.getElementById('searchResults');
+        let match = e.value.match(/^[a-zA-Z0-9]+$/);
+        let match2 = e.value.match(/\s*/)
+
+        if (match2[0] === e.value) {
+            searchResults.innerHTML = '';
+            return;
+        }
+        if (match[0] === e.value) {
+            fetch('search', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    search: e.value
+                })
+            }).then(res => res.json()).then(data => {
+                let search = data.search
+                searchResults.innerHTML = '';
+                if (search.length > 0) {
+                    search.forEach((item, index) => {
+                        searchResults.innerHTML += `<a class="navbar-item" href="/anime/?id=${item._id}">${item.name}</a>`
+                    })
+                } else {
+                    searchResults.innerHTML = '<a class="navbar-item">No results</a>'
+                }
+            })
+        }
+    }
+    function myFunction() {
+        document.getElementById("searchResults").style.display = "block";
+    }
+
+    function myFunction2() {
+        document.getElementById("searchResults").style.display = "none";
+    }
+</script>
+
+<style>
+    .support-search {
+        flex-direction: column;
+
+        width: 100%;
+    }
+
+    #searchResults {
+        transform: translateY(52px);
+        background-color: white;
+        position: fixed;
+        width: 250px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        display: none;
+    }
+
+    .bar-container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .search-bar{
+        height: 50px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .search-bar input {
+        height: 35px;
+        width: 250px;
+        display: block;
+        background-color: transparent;
+        border: 1px solid #bababa;
+        border-radius: 10px;
+        padding: 0 10px 0 54px;
+        background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='18' height='18' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Cdefs%3E%3Cpath d='M18.5 17h-.79l-.28-.27a6.5 6.5 0 10-.7.7l.27.28v.79l5 4.99L23.49 22l-4.99-5zm-6 0a4.5 4.5 0 11-.01-8.99A4.5 4.5 0 0112.5 17z' id='a'/%3E%3C/defs%3E%3Cg transform='translate(-6 -6)' fill='none' fill-rule='evenodd'%3E%3Cmask id='b' fill='%23fff'%3E%3Cuse xlink:href='%23a'/%3E%3C/mask%3E%3Cg mask='url(%23b)' fill='%23D8D8D8'%3E%3Cpath d='M3 3h24v24H3z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-size: 16px;
+        background-position: 25px 50%;
+        color: #7c7c7c;
+        font-size: 16px;
+    }
+
+    .search-bar input:focus {
+        outline: none;
+    }
+
+    .search-bar input:focus ~ #searchResults {
+        display: block;
+    }
+
+</style>
