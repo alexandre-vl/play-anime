@@ -27,6 +27,7 @@ const authRoute = require('./routes/auth');
 const dashboardRoute = require('./routes/dashboard');
 const movieRoute = require('./routes/movies');
 const searchRoute = require('./routes/search');
+const homeRoute = require('./routes/home');
 
 app.use(session({
     secret: process.env.CLIENT_SECRET,
@@ -54,10 +55,8 @@ app.use('/auth', authRoute);
 app.use('/dashboard', dashboardRoute);
 app.use('/api', movieRoute);
 app.use('/search', searchRoute);
+app.use('/', homeRoute);
 
-app.get('/', (req, res) => {
-    res.render('home', {user: req.user, logged: !!req.user });
-});
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

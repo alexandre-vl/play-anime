@@ -1,7 +1,7 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item" href="/">
-            <img src="/img/anime-logo.png" width="112" height="28">
+            <img src="/img/anime-logo.png" width="112" height="28" alt="Logo">
         </a>
 
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -30,9 +30,10 @@
             <div class="support-search">
                 <div class="search-bar">
                     <div class="bar-container">
-                        <input type="text" placeholder="Fast search..." onkeyup="sendData(this)" onfocus="showSearch()" />
+                        <input type="text" placeholder="Fast search..." onkeyup="sendData(this)"/>
+                        <section id="searchResults" ></section>
                     </div>
-                    <section id="searchResults"></section>
+
                 </div>
             </div>
 
@@ -46,7 +47,7 @@
 <script>
     function sendData(e) {
         const searchResults = document.getElementById('searchResults');
-        let match = e.value.match(/^[a-zA-Z0-9]+$/);
+        let match = e.value.match(/^[a-zA-Z\d]+$/);
         let match2 = e.value.match(/\s*/)
 
         if (match2[0] === e.value) {
@@ -76,11 +77,12 @@
         }
     }
     function showSearch() {
-        document.getElementById("searchResults").style.display = "block";
+        document.getElementById("searchResults").style.visibility = "visible";
     }
 
     function hideSearch() {
-        document.getElementById("searchResults").style.display = "none";
+        document.getElementById("searchResults").style.visibility = "hidden";
+
     }
 </script>
 
@@ -92,13 +94,22 @@
     }
 
     #searchResults {
-        transform: translateY(52px);
+        top: 52px;
         background-color: white;
-        position: fixed;
+        position: absolute;
         width: 250px;
         border-bottom-left-radius: 5px;
         border-bottom-right-radius: 5px;
-        display: none;
+        visibility: hidden;
+    }
+
+    #searchResults:hover{
+        visibility: visible;
+    }
+
+    #searchResults:hover a {
+        border-bottom-right-radius: 10px !important;
+        border-bottom-left-radius: 10px !important;
     }
 
     .bar-container {
@@ -107,11 +118,12 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        position: relative;
     }
 
     .search-bar{
         height: 50px;
-        position: relative;
+
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -137,8 +149,10 @@
         outline: none;
     }
 
-    .search-bar input:focus ~ #searchResults {
-        display: block;
+    .search-bar input:focus + #searchResults {
+        visibility: visible;
     }
+
+
 
 </style>

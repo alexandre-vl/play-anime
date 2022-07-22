@@ -33,6 +33,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.8.0",
     "mongoose": "^6.4.6",
+    "nautiljon-scraper": "^1.1.0",
     "nodemon": "^2.0.19",
     "passport": "^0.6.0",
     "passport-discord": "^0.1.4",

@@ -1,27 +1,158 @@
 <%- include('partials/header') -%>
 <%- include('partials/navbar') -%>
 
-<section class="splide" aria-label="Splide Basic HTML Example">
-    <div class="splide__track">
-        <ul class="splide__list">
-            <li class="splide__slide">Slide 01</li>
-            <li class="splide__slide">Slide 02</li>
-            <li class="splide__slide">Slide 03</li>
-        </ul>
+<section class="first-section slide-section">
+    <div class="splide" id="trends">
+        <div class="slide-section-text">
+            <p class="slide-section-title">🎯 Trends</p>
+        </div>
+        <div class="splide__track">
+            <ul class="splide__list">
+                <% data.trend.forEach((item) => { %>
+                <li class="splide__slide"><img src="<%=item.img%>" alt="Image" class="splide_slide_img"></li>
+                <%})%>
+            </ul>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const slider = new Splide('#trends', {
+                    type: 'loop',
+                    perPage: 5.5,
+                    perMove: 1,
+                    responsive: true,
+                    speed: 1000,
+                    drag: true,
+                    swipe: true,
+                    touch: true,
+                    keyboard: true,
+                    rewind : true,
+                    scrollbar: true,
+                    scrollbarType: 'slide',
+                }).mount();
+            });
+        </script>
     </div>
-    <script>
-        const slider = new Splide('.splide', {
-            type: 'loop',
-            responsive: true,
-            speed: 1000,
-            drag: true,
-            swipe: true,
-            touch: true,
-            keyboard: true,
-            scrollbar: true,
-            scrollbarType: 'slide',
-        }).mount();
-    </script>
+</section>
+
+<section class="slide-section">
+
+    <div class="splide" id="series">
+        <div class="slide-section-text">
+            <p class="slide-section-title">🎬 Series</p>
+        </div>
+        <div class="splide__track">
+            <ul class="splide__list">
+                <% data.series.forEach((item) => { %>
+                <li class="splide__slide"><img src="<%=item.img%>" alt="Image" class="splide_slide_img"></li>
+                <%})%>
+            </ul>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const slider = new Splide('#series', {
+                    type: 'loop',
+                    perPage: 5.5,
+                    perMove: 1,
+                    responsive: true,
+                    speed: 1000,
+                    drag: true,
+                    swipe: true,
+                    touch: true,
+                    keyboard: true,
+                    rewind : true,
+                    scrollbar: true,
+                    scrollbarType: 'slide',
+                }).mount();
+            });
+        </script>
+    </div>
+</section>
+
+
+<section class="slide-section">
+
+    <div class="splide" id="movies">
+        <div class="slide-section-text">
+            <p class="slide-section-title">🍿 Movies</p>
+        </div>
+        <div class="splide__track">
+            <ul class="splide__list">
+                <% data.movies.forEach((item) => { %>
+                <li class="splide__slide"><img src="<%=item.img%>" alt="Image" class="splide_slide_img"></li>
+                <%})%>
+            </ul>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const slider = new Splide('#movies', {
+                    type: 'loop',
+                    perPage: 5.5,
+                    perMove: 1,
+                    responsive: true,
+                    speed: 1000,
+                    drag: true,
+                    swipe: true,
+                    touch: true,
+                    keyboard: true,
+                    rewind : true,
+                    scrollbar: true,
+                    scrollbarType: 'slide',
+                }).mount();
+            });
+        </script>
+    </div>
 </section>
 
 <%- include('partials/footer') -%>
+
+<style>
+
+    .first-section {
+        margin-top: 5rem !important;
+    }
+
+    .slide-section {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .slide-section-text {
+        width: 100%;
+    }
+
+    .slide-section-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+    }
+
+    .splide {
+        width: 1200px !important;
+        margin-bottom: 5rem;
+    }
+    .splide_slide_img {
+        height: 300px;
+        width: 200px;
+        border-radius: 10px;
+    }
+
+    .splide__arrow--prev {
+        left: -3rem !important;
+    }
+    .splide__arrow--next {
+        right: -3rem !important;
+    }
+
+    .splide__pagination {
+        bottom: inherit !important;
+    }
+
+    @media screen and (max-width: 1330px) {
+        .splide {
+            width: 100% !important;
+        }
+    }
+</style>

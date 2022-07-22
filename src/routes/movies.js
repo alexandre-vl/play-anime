@@ -15,6 +15,7 @@ router.get('/', async (req, res) => {
             "Action",
             "Adventure",
             "Fantasy",
+            "Fantastic",
             "Romance",
             "Comedy",
             "Drama",
@@ -48,7 +49,6 @@ router.get('/', async (req, res) => {
             .where('type').in([...type])
             .sort(sortBy)
             .skip(page * limit)
-        console.log(page, limit)
 
         const total = await Movie.countDocuments({
             genre: {$in: [...genre]},
@@ -84,7 +84,6 @@ const insertMovies = async () => {
 }
 
 insertMovies()
-    .then((docs) => {console.log(docs);})
     .catch((err) => {console.log(err);})
 
 module.exports = router;

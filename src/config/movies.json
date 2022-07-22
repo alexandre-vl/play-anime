@@ -1,120 +1,48 @@
 [
   {
-    "name": "The Shawshank Redemption",
-    "img": "https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_FMjpg_UX674_.jpg",
-    "year": "1994",
-    "genre": ["Drama","Crime"],
-    "type": ["Movie"],
-    "description": "Two imprisoned",
-    "rating": "9.2"
-  },
-  {
-    "name": "The Godfather",
-    "img": "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_FMjpg_UX674_.jpg",
-    "year": "1972",
-    "genre": ["Drama","Crime"],
-    "type": ["Movie"],
-    "description": "Two imprisoned",
-    "rating": "9.2"
-  },
-  {
-    "name": "The Dark Knight",
-    "img": "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_FMjpg_UX674_.jpg",
-    "year": "2008",
-    "genre": ["Action", "Adventure"],
-    "type": ["Movie"],
-    "description": "Two imprisoned",
-    "rating": "9.0"
-  },
-  {
-    "name": "Pulp Fiction",
-    "img": "https://m.media-amazon.com/images/M/MV5BNGNhMDIzZTUtNTBlZi00MTRlLWFjM2ItYzViMjE3YzI5MjljXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_FMjpg_UX674_.jpg",
-    "year": "1994",
-    "genre": ["Drama","Crime"],
-    "type": ["Movie"],
-    "description": "Two imprisoned",
-    "rating": "8.9"
-  },
-  {
-    "name": "Forrest Gump",
-    "img": "https://m.media-amazon.com/images/M/MV5BNWIwODRlZTUtY2U3ZS00Yzg1LWJhNzYtMmZiYmEyNmU1NjMzXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_FMjpg_UX674_.jpg",
-    "year": "1994",
-    "genre": ["Drama","Romance"],
-    "type": ["Movie"],
-    "description": "Two imprisoned",
-    "rating": "8.8"
-  },
-  {
-    "name": "Fight Club",
-    "img": "https://m.media-amazon.com/images/M/MV5BNDIzNDU0YzEtYzE5Ni00ZjlkLTk5ZjgtNjM3NWE4YzA3Nzk3XkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_FMjpg_UX674_.jpg",
-    "year": "1999",
-    "genre": ["Drama","Thriller"],
-    "type": ["Movie"],
-    "description": "Two imprisoned",
-    "rating": "8.8"
-  },
-  {
-    "name": "The Matrix",
-    "img": "https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_FMjpg_UX674_.jpg",
-    "year": "1999",
-    "genre": ["Sci-fi", "Action"],
-    "type": ["Movie"],
-    "description": "Two imprisoned",
-    "rating": "8.7"
-  },
-  {
-    "name": "Goodfellas",
-    "img": "https://m.media-amazon.com/images/M/MV5BY2NkZjEzMDgtN2RjYy00YzM1LWI4ZmQtMjIwYjFjNmI3ZGEwXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_FMjpg_UX674_.jpg",
-    "year": "1990",
-    "genre": ["Drama","Crime"],
-    "type": ["Movie"],
-    "description": "Two imprisoned",
-    "rating": "8.7"
-  },
-  {
-    "name": "Interstellar",
-    "img": "https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_FMjpg_UX674_.jpg",
-    "year": "2014",
-    "genre": ["Sci-fi", "Adventure"],
-    "type": ["Movie"],
-    "description": "Two imprisoned",
-    "rating": "8.6"
-  },
-  {
-    "name": "Whiplash",
-    "img": "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_FMjpg_UX674_.jpg",
-    "year": "2014",
-    "genre": ["Drama", "Music"],
-    "type": ["Movie"],
-    "description": "Two imprisoned",
+    "name": "Naruto",
+    "img": "https://www.nautiljon.com/images/anime/00/15/mini/naruto_51.jpg",
+    "year": "2002",
+    "genre": ["Action","Adventure", "Comedy", "Fantasy"],
+    "type": ["Series"],
+    "description": "Dans le village de Konoha vit Naruto, un jeune garçon détesté et craint des villageois du fait qu'il détienne en lui Kyuubi (démon renard à neuf queues) d'une incroyable force, qui a tué un grand nombre de personnes. Le ninja le plus puissant de Konoha à l'époque, le quatrième Hokage, Minato Namikaze, réussit à sceller ce démon dans le corps de Naruto.\nMalheureusement il y laissa la vie.",
     "rating": "8.5"
   },
   {
-    "name": "Parasite",
-    "img": "https://m.media-amazon.com/images/M/MV5BYWZjMjk3ZTItODQ2ZC00NTY5LWE0ZDYtZTI3MjcwN2Q5NTVkXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_FMjpg_UX674_.jpg",
+    "name": "One Piece",
+    "img": "https://www.nautiljon.com/images/anime/00/60/mini/one_piece_6.jpg?11658065365",
+    "year": "1999",
+    "genre": ["Action","Adventure", "Comedy", "Fantasy"],
+    "type": ["Series"],
+    "description": "Il fut un temps où Gold Roger était le plus grand de tous les pirates, le \"Roi des Pirates\" était son surnom. A sa mort, son trésor d'une valeur inestimable connu sous le nom de \"One Piece\" fut caché quelque part sur \"Grand Line\". De nombreux pirates sont partis à la recherche de ce trésor mais tous sont morts avant même de l'atteindre. Monkey D. Luffy rêve de retrouver ce trésor légendaire et de devenir le nouveau \"Roi des Pirates\". Après avoir mangé un fruit du démon, il possède un pouvoir lui permettant de réaliser son rêve. Il lui faut maintenant trouver un équipage pour partir à l'aventure !",
+    "rating": "8.8"
+  },
+  {
+    "name": "Death Note",
+    "img": "https://www.nautiljon.com/images/anime/00/08/mini/death_note_180.jpg?11642968140",
+    "year": "2006",
+    "genre": ["Drama", "Fantastic", "Thriller"],
+    "type": ["Series", "Movie"],
+    "description": "Light Yagami, un jeune étudiant surdoué, ramasse un jour le \"Death Note\", un carnet tenu auparavant par un shinigami (Dieu de la mort), Ryuk, qui apparemment s'ennuyait dans son monde.",
+    "rating": "8.86"
+  },
+  {
+    "name": "Demon Slayer",
+    "img": "https://www.nautiljon.com/images/anime/00/87/mini/kimetsu_no_yaiba_7878.jpg",
     "year": "2019",
-    "genre": ["Thriller", "Drama"],
-    "type": ["Movie"],
-    "description": "Two imprisoned",
-    "rating": "8.5"
+    "genre": ["Action","Adventure", "Drama", "Fantastic"],
+    "type": ["Series", "Movie"],
+    "description": "Depuis les temps anciens, il existe des rumeurs concernant des démons mangeurs d'hommes qui se cachent dans les bois. Pour cette raison, les citadins locaux ne s'y aventurent jamais la nuit. La légende raconte aussi qu'un tueur de démons déambule la nuit, chassant ces démons assoiffés de sang. Pour le jeune Tanjirô, ces rumeurs vont bientôt devenir sa dure réalité ...",
+    "rating": "9.08"
   },
   {
-    "name": "Spider-Man: Into the Spider-Verse",
-    "img": "https://m.media-amazon.com/images/M/MV5BMjMwNDkxMTgzOF5BMl5BanBnXkFtZTgwNTkwNTQ3NjM@._V1_FMjpg_UX674_.jpg",
-    "year": "2018",
-    "genre": ["Family", "Action"],
-    "type": ["Movie"],
-    "description": "Two imprisoned",
-    "rating": "8.3"
-  },
-  {
-    "name": "Coco",
-    "img": "https://m.media-amazon.com/images/M/MV5BYjQ5NjM0Y2YtNjZkNC00ZDhkLWJjMWItN2QyNzFkMDE3ZjAxXkEyXkFqcGdeQXVyODIxMzk5NjA@._V1_FMjpg_UX674_.jpg",
-    "year": "2017",
-    "genre": ["Family", "Adventure"],
-    "type": ["Movie"],
-    "description": "Two imprisoned",
-    "rating": "8.3"
+    "name": "Parasyte",
+    "img": "https://www.nautiljon.com/images/anime/00/81/mini/kiseijuu_sei_no_kakuritsu_3618.jpg?11652006919",
+    "year": "2014",
+    "genre": ["Action", "Drama", "Fantastic", "Horror"],
+    "type": ["Series"],
+    "description": "Depuis des milliers d'années, l'Homme se trouve au sommet de la chaîne alimentaire. Jusqu'à ce jour où de mystérieuses sphères, abritant d'étranges parasites, se répandent un peu partout sur Terre. Rapidement, les entités prennent possession de certains habitants. Nul ne sait d'où elles viennent, mais ce qui semble certain, c'est qu'elles sont là pour débarrasser le monde de l'espèce humaine.",
+    "rating": "8.83"
   },
   {
     "name": "Your Name",
