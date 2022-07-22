@@ -1,0 +1,43 @@
+<% if (!logged) { %>
+<div class="navbar-end">
+    <div class="navbar-item">
+        <div class="buttons">
+            <a class="button is-link" href="/auth">
+                <strong>Login</strong>
+            </a>
+        </div>
+    </div>
+</div>
+<% }else { %>
+<div class="navbar-end">
+    <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link" style="color: #4974b3">
+
+            <p><%=user.username%></p>
+
+            <img class="pp-discord" src="<%=`https://cdn.discordapp.com/avatars/${user.discordId}/${user.avatar}.png`%>">
+        </a>
+
+        <div class="navbar-dropdown">
+            <a class="navbar-item" href="/dashboard">
+                Dashboard
+            </a>
+            <a class="navbar-item" href="/dashboard/settings">
+                Settings
+            </a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" href="/auth/logout">
+                <strong>Logout</strong>
+            </a>
+        </div>
+    </div>
+</div>
+<% } %>
+
+<style>
+    .pp-discord {
+        height: 32px;
+        border-radius: 50%;
+        margin-left: 10px;
+    }
+</style>
