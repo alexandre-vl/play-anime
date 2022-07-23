@@ -9,7 +9,7 @@
 
 <% }else { %>
     <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link" style="color: #4974b3">
+        <a class="navbar-link">
 
             <p><%=user.username%></p>
 
@@ -33,9 +33,18 @@
 <% } %>
 
 <style>
+
     .pp-discord {
         height: 32px;
         border-radius: 50%;
         margin-left: 10px;
+    }
+
+    .navbar-link {
+        color: #fff;
+    }
+
+    .navbar-link:not(.is-arrowless)::after {
+        border-color: #fff !important;
     }
 </style>

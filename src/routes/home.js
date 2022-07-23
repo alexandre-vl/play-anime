@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
         })
         return request.body.movies
     }
-    res.render('home', {user: req.user, logged: !!req.user, data:  {trend: await fetchDb({}), series: await fetchDb({type: 'Series'}), movies: await fetchDb({type: 'Movie'})}})
+    res.render('home', {user: req.user, logged: !!req.user, data:  {trend: await fetchDb({sort:"rating,desc"}), series: await fetchDb({type: 'Series', sort:"rating,desc"}), movies: await fetchDb({type: 'Movie', sort:"rating,desc"})}})
 
 })
 
