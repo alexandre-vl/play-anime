@@ -75,10 +75,17 @@
 
     @media screen and (max-width: 1023px) {
         .navbar-profile {
-            justify-content: flex-start;
             color: #C8472C;
         }
+
+        .navbar-profile p {
+            display: none;
+        }
+
         .navbar-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             color: #C8472C !important;
         }
     }

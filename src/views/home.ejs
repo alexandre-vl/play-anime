@@ -9,7 +9,7 @@
         <div class="splide__track">
             <ul class="splide__list">
                 <% data.trend.forEach((item) => { %>
-                <li class="splide__slide"><img src="<%=item.img%>" alt="Image" class="splide_slide_img"></li>
+                <a class="splide__slide" href="/anime/?id=<%=item._id%>"><img src="<%=item.img%>" alt="Image" class="splide_slide_img"></a>
                 <%})%>
             </ul>
         </div>
@@ -43,7 +43,7 @@
         <div class="splide__track">
             <ul class="splide__list">
                 <% data.series.forEach((item) => { %>
-                <li class="splide__slide"><img src="<%=item.img%>" alt="Image" class="splide_slide_img"></li>
+                <a class="splide__slide" href="/anime/?id=<%=item._id%>"><img src="<%=item.img%>" alt="Image" class="splide_slide_img"></a>
                 <%})%>
             </ul>
         </div>
@@ -78,7 +78,7 @@
         <div class="splide__track">
             <ul class="splide__list">
                 <% data.movies.forEach((item) => { %>
-                <li class="splide__slide"><img src="<%=item.img%>" alt="Image" class="splide_slide_img"></li>
+                <a class="splide__slide" href="/anime/?id=<%=item._id%>"><img src="<%=item.img%>" alt="Image" class="splide_slide_img"></a>
                 <%})%>
             </ul>
         </div>
@@ -131,11 +131,25 @@
     .splide {
         width: 1200px !important;
         margin-bottom: 5rem;
+
     }
     .splide_slide_img {
         height: 300px;
         width: 200px;
         border-radius: 10px;
+    }
+
+    .splide__slide {
+        transition: transform 0.3s ease-in-out;
+        border-radius: 10px !important;
+    }
+
+    .splide__list {
+        border-radius: 10px !important;
+    }
+
+    .splide__slide:hover {
+        transform: scale(1.1);
     }
 
     .splide__arrow--prev {
