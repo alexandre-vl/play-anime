@@ -52,5 +52,15 @@
     "type": ["Series"],
     "description": "Two imprisoned",
     "rating": "8.3"
+  },
+  {
+    "name": "Spy X Family",
+    "img": "https://www.nautiljon.com/images/anime/00/95/mini/spy_family_10759.jpg?11656174577",
+    "year": "2022",
+    "genre": ["Action", "Adventure", "Comedy"],
+    "type": ["Series"],
+    "description": "Twilight, le plus grand espion du monde, doit pour sa nouvelle mission créer une famille de toutes pièces afin de pouvoir s'introduire dans la plus prestigieuse école de l'aristocratie. Totalement dépourvu d'expérience familiale, il va adopter une petite fille en ignorant qu'elle est télépathe, et s'associer à une jeune femme timide, sans se douter qu'elle est une redoutable tueuse à gages. Ce trio atypique va devoir composer pour passer inaperçu, tout en découvrant les vraies valeurs d'une famille unie et aimante.",
+    "rating": "9.26"
   }
+
 ]

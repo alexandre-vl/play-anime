@@ -11,7 +11,18 @@ router.get('/', async (req, res) => {
         })
         return request.body.movies
     }
-    res.render('home', {user: req.user, logged: !!req.user, data:  {trend: await fetchDb({sort:"rating,desc"}), series: await fetchDb({type: 'Series', sort:"rating,desc"}), movies: await fetchDb({type: 'Movie', sort:"rating,desc"})}})
+
+    function shuffleArray(array) {
+        for (var i = array.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+        return array;
+    }
+
+    res.render('home', {user: req.user, logged: !!req.user, data:  {trend: shuffleArray(await fetchDb({sort:"rating,desc"})), series: shuffleArray(await fetchDb({type: 'Series', sort:"rating,desc"})), movies: shuffleArray(await fetchDb({type: 'Movie', sort:"rating,desc"}))}})
 
 })
 
