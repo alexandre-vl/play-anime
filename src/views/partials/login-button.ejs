@@ -9,7 +9,7 @@
 
 <% }else { %>
     <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
+        <a class="navbar-profile">
 
             <p><%=user.username%></p>
 
@@ -40,11 +40,48 @@
         margin-left: 10px;
     }
 
-    .navbar-link {
+    .navbar-profile {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
         color: #fff;
+        padding: 0 36px 0 20px;
     }
 
-    .navbar-link:not(.is-arrowless)::after {
-        border-color: #fff !important;
+    .navbar-dropdown a.navbar-item:hover > .navbar-link {
+        background-color: #2f3136 !important;
     }
+
+    .navbar-profile:not(.is-arrowless)::after {
+        border: 3px solid transparent;
+        border-radius: 2px;
+        border-right: 0;
+        border-top: 0;
+        content: " ";
+        display: block;
+        height: 0.625em;
+        margin-top: -0.4375em;
+        pointer-events: none;
+        position: absolute;
+        top: 50%;
+        transform: rotate(-45deg);
+        transform-origin: center;
+        width: 0.625em;
+        border-color: #fff !important;
+        margin-top: -0.375em;
+        right: 1.125em;
+    }
+
+    @media screen and (max-width: 1023px) {
+        .navbar-profile {
+            justify-content: flex-start;
+            color: #C8472C;
+        }
+        .navbar-item {
+            color: #C8472C !important;
+        }
+    }
+
+
 </style>
