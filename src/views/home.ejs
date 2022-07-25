@@ -4,12 +4,19 @@
 <section class="first-section slide-section">
     <div class="splide" id="trends">
         <div class="slide-section-text">
-            <p class="slide-section-title">🏆 Popular</p>
+            <a class="slide-section-title" href="/">🏆 Popular</a>
         </div>
         <div class="splide__track">
             <ul class="splide__list">
                 <% data.trend.forEach((item) => { %>
-                <a class="splide__slide" href="/anime/?name=<%=item.name%>" ><img src="<%=item.img%>" alt="Image" class="splide_slide_img"></a>
+                <div class="splide__slide" style="position: relative">
+                    <a class="slide-brand-type" href="/<%=item.type[0]==="Serie"?"series":"movies"%>"><%=item.type[0].toUpperCase()%></a>
+                    <a href="/anime/?name=<%=item.name%>">
+                        <img src="<%=item.img%>" alt="Image" class="splide_slide_img">
+                        <p><%=item.name%></p>
+                    </a>
+                </div>
+
                 <%})%>
             </ul>
         </div>
@@ -19,6 +26,8 @@
                     type: 'loop',
                     perPage: 5.5,
                     perMove: 1,
+                    autoplay: true,
+                    autoplaySpeed: 3000,
                     responsive: true,
                     speed: 1000,
                     drag: true,
@@ -56,12 +65,19 @@
 
     <div class="splide" id="series">
         <div class="slide-section-text">
-            <p class="slide-section-title">🎬 Series</p>
+            <a class="slide-section-title" href="/series">🎬 Series</a>
         </div>
         <div class="splide__track">
             <ul class="splide__list">
                 <% data.series.forEach((item) => { %>
-                <a class="splide__slide" href="/anime/?id=<%=item._id%>"><img src="<%=item.img%>" alt="Image" class="splide_slide_img"></a>
+                <div class="splide__slide" style="position: relative">
+                    <a class="slide-brand-type" href="/<%=item.type[0]==="Serie"?"series":"movies"%>"><%=item.type[0].toUpperCase()%></a>
+                    <a href="/anime/?name=<%=item.name%>">
+                        <img src="<%=item.img%>" alt="Image" class="splide_slide_img">
+                        <p><%=item.name%></p>
+                    </a>
+                </div>
+
                 <%})%>
             </ul>
         </div>
@@ -109,12 +125,19 @@
 
     <div class="splide" id="movies">
         <div class="slide-section-text">
-            <p class="slide-section-title">🍿 Movies</p>
+            <a class="slide-section-title" href="/movies">🍿 Movies</a>
         </div>
         <div class="splide__track">
             <ul class="splide__list">
                 <% data.movies.forEach((item) => { %>
-                <a class="splide__slide" href="/anime/?id=<%=item._id%>"><img src="<%=item.img%>" alt="Image" class="splide_slide_img"></a>
+                <div class="splide__slide" style="position: relative">
+                    <a class="slide-brand-type" href="/<%=item.type[0]==="Serie"?"series":"movies"%>"><%=item.type[0].toUpperCase()%></a>
+                    <a href="/anime/?name=<%=item.name%>">
+                        <img src="<%=item.img%>" alt="Image" class="splide_slide_img">
+                        <p><%=item.name%></p>
+                    </a>
+                </div>
+
                 <%})%>
             </ul>
         </div>
@@ -133,20 +156,20 @@
                     scrollbar: true,
                     scrollbarType: 'slide',
                     breakpoints: {
-                        640: {
+                        550: {
                             perPage: 1.6,
 
                         },
                         768: {
-                            perPage: 2,
+                            perPage: 2.2,
 
                         },
-                        1024: {
-                            perPage: 3,
+                        1130: {
+                            perPage: 3.2,
 
                         },
                         1440: {
-                            perPage: 5,
+                            perPage: 5.2,
 
                         },
                     },
@@ -159,6 +182,10 @@
 <%- include('partials/footer') -%>
 
 <style>
+
+    a {
+        color: #C8472C !important;
+    }
 
     .first-section {
         margin-top: 5rem !important;
@@ -174,12 +201,13 @@
 
     .slide-section-text {
         width: 100%;
+        margin-bottom: 1rem !important;
     }
 
     .slide-section-title {
         font-size: 1.5rem;
         font-weight: bold;
-        margin-bottom: 1rem;
+        color: #4A4A4A !important;
     }
 
     .splide {
@@ -194,8 +222,12 @@
     }
 
     .splide__slide {
-        transition: transform 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
         border-radius: 10px !important;
+        position: relative;
+        color: #C8472C !important;
+        display: flex;
+        flex-direction: column;
     }
 
     .splide__list {
@@ -203,7 +235,23 @@
     }
 
     .splide__slide:hover {
-        transform: scale(1.1);
+        opacity: 90%;
+    }
+
+    .splide__slide:hover {
+        color: #326bac !important;
+    }
+
+    .slide-brand-type {
+        position: absolute;
+        top: 10px;
+        right: calc(50% - 80px);
+        z-index: 99;
+        color: #ffffff !important;
+        background-color: rgba(0, 0, 0, 0.69);
+        border-radius: 5px;
+        font-size: 12px;
+        padding: 2px 5px;
     }
 
     .splide__arrow--prev {
@@ -221,6 +269,13 @@
         .splide {
             width: 100% !important;
             padding: 0 20px;
+        }
+    }
+
+    @media screen and (max-width: 1130px) {
+        .slide-brand-type {
+            left: 20px;
+            right: auto;
         }
     }
 </style>

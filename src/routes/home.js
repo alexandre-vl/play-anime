@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
         return array;
     }
 
-    res.render('home', {user: req.user, logged: !!req.user, data:  {trend: shuffleArray(await fetchDb({sort:"rating,desc"})), series: shuffleArray(await fetchDb({type: 'Series', sort:"rating,desc"})), movies: shuffleArray(await fetchDb({type: 'Movie', sort:"rating,desc"}))}})
+    res.render('home', {user: req.user, logged: !!req.user, data:  {trend: shuffleArray(await fetchDb({sort:"rating,desc"})), series: shuffleArray(await fetchDb({type: 'Serie', sort:"rating,desc"})), movies: shuffleArray(await fetchDb({type: 'Movie', sort:"rating,desc"}))}})
 
 })
 

@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
 
         const typeOptions = [
             "Movie",
-            "Series",
+            "Serie",
             "OVA",
             "ONA",
             "Special"

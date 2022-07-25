@@ -13,15 +13,15 @@
 
     <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-            <a class="navbar-item">
+            <a class="navbar-item" href="/">
                 Home
             </a>
 
-            <a class="navbar-item">
-                Film
+            <a class="navbar-item" href="/movies">
+                Movies
             </a>
 
-            <a class="navbar-item">
+            <a class="navbar-item" href="/series">
                 Series
             </a>
         </div>
@@ -92,7 +92,7 @@
     }
 
     .navbar-item {
-        color: #fff;
+        color: #fff !important;
     }
 
     .navbar-start a:hover {
@@ -119,7 +119,6 @@
 
     .support-search {
         flex-direction: column;
-
         width: 100%;
     }
 
@@ -139,9 +138,21 @@
     }
 
     #searchResults a {
-        color: #C8472C;
-        border-bottom-right-radius: 10px !important;
-        border-bottom-left-radius: 10px !important;
+        color: #C8472C !important;
+    }
+
+    #searchResults a:last-child {
+        border-bottom-right-radius: 5px !important;
+        border-bottom-left-radius: 5px !important;
+    }
+
+    #searchResults a:hover {
+        background-color: #d05c46 !important;
+        color: #fff !important;
+    }
+
+    .navbar-burger {
+        color: white !important;
     }
 
     .bar-container {
@@ -186,6 +197,9 @@
     }
 
     @media screen and (max-width: 1024px) {
+        .navbar-item {
+            color: #C8472C !important;
+        }
         #searchResults {
             display: none;
         }
