@@ -28,6 +28,7 @@ const dashboardRoute = require('./routes/dashboard');
 const movieRoute = require('./routes/movies');
 const searchRoute = require('./routes/search');
 const homeRoute = require('./routes/home');
+const animeRoute = require('./routes/anime');
 
 app.use(session({
     secret: process.env.CLIENT_SECRET,
@@ -55,6 +56,7 @@ app.use('/auth', authRoute);
 app.use('/dashboard', dashboardRoute);
 app.use('/api', movieRoute);
 app.use('/search', searchRoute);
+app.use('/anime', animeRoute);
 app.use('/', homeRoute);
 
 

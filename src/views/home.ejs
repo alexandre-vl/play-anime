@@ -9,7 +9,7 @@
         <div class="splide__track">
             <ul class="splide__list">
                 <% data.trend.forEach((item) => { %>
-                <a class="splide__slide" href="/anime/?id=<%=item._id%>"><img src="<%=item.img%>" alt="Image" class="splide_slide_img"></a>
+                <a class="splide__slide" href="/anime/?name=<%=item.name%>" ><img src="<%=item.img%>" alt="Image" class="splide_slide_img"></a>
                 <%})%>
             </ul>
         </div>
@@ -151,7 +151,6 @@
                         },
                     },
                 }).mount();
-
             });
         </script>
     </div>
