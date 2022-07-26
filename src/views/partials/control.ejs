@@ -8,15 +8,31 @@
         <p>Previous</p>
     </a>
 
-    <select name="EpisodesSelector" id="select-episodes" class="select-episodes">
-        <option value="">List Episodes</option>
+    <select name="EpisodesSelector" id="select-episodes" class="select-episodes" onchange="changeEp(this)">
+        <option value="default">List Episodes</option>
         <%anime.videos.episodes.forEach(ep=> { console.log(ep); %>
             %>
-            <option value="<%=ep.id%>">Episode <%=ep.id%></option>
+            <option value="<%=ep.players[0].url%>" id="<%=ep.id%>">Episode <%=ep.id%></option>
             <%
         })%>
 
     </select>
+
+    <script>
+        function changeEp(el) {
+            const option = el.value;
+            if (option === 'default') return
+            console.log(option);
+            const ep_selector =  document.getElementById('select-episodes')
+            const option_selected = ep_selector.options[ep_selector.selectedIndex]
+            if (history.pushState) {
+                const newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?name=<%=anime.name%>&ep_id='+option_selected.id;
+                window.history.pushState({path:newurl},'',newurl);
+            }
+            document.getElementById('player').src = el.value;
+            return option;
+        }
+    </script>
 
     <a class="control-episodes-arrow">
         <p>Next</p>
@@ -26,21 +42,9 @@
     </a>
 </div>
 <div class="control-player">
-    <a class="control-episodes-arrow">
-        <img alt="player" src="/img/players/icon_dstream.png">
-        <p>Dstream</p>
-    </a>
-    <a class="control-episodes-arrow">
-        <img alt="player" src="/img/players/icon_vidspot.png">
-        <p>VidSpot</p>
-    </a>
-    <a class="control-episodes-arrow">
-        <img alt="player" src="/img/players/icon_vudeo.png">
-        <p>Vudeo</p>
-    </a>
-    <a class="control-episodes-arrow">
-        <img alt="player" src="/img/players/icon_uqload.png">
-        <p>Uqload</p>
+    <%anime.videos.episodes.find(ep=>ep.id===parseInt(req.query.ep_id))%>
+    <a class="control-episodes-arrow control-player-button">
+        <p>Player 1</p>
     </a>
 
 </div>
@@ -65,6 +69,10 @@
         border-radius: 10px;
         padding: 8px 20px;
         color: white !important;
+    }
+
+    .control-player-button {
+        background-color: #edb500;
     }
 
     .control-episodes-arrow svg, .control-episodes-arrow img {
