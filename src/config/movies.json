@@ -32,7 +32,7 @@
     "month": "10",
     "day": "02",
     "genre": ["Drama", "Fantastic", "Thriller"],
-    "type": ["Serie", "Movie"],
+    "type": ["Serie"],
     "description": "Light Yagami, un jeune étudiant surdoué, ramasse un jour le \"Death Note\", un carnet tenu auparavant par un shinigami (Dieu de la mort), Ryuk, qui apparemment s'ennuyait dans son monde.",
     "rating": "8.86",
     "duration": "24",
