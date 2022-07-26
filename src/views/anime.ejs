@@ -19,7 +19,7 @@
                 <div class="intro-subcase">
                     <h2><%=anime.type[0]%></h2>
                     &middot;
-                    <h2><%=anime.day%>/<%=anime.month%>/<%=anime.year%></h2>
+                    <h2><%=anime.date.day%>/<%=anime.date.month%>/<%=anime.date.year%></h2>
                     &middot;
                     <h2 class="genre-list"><%=anime.genre.join(", ")%></h2>
                     &middot;
@@ -27,13 +27,13 @@
                 </div>
             </div>
             <div class="intro-buttons">
-                <a class="intro-button-watch">
+                <a class="intro-button-watch" href="#control">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
                     </svg>
                     <span>Watch</span>
                 </a>
-                <a class="intro-button">
+                <a class="intro-button" href="<%=anime.videos.trailer%>" target="_blank">
                     <span>Trailer</span>
                 </a>
             </div>
@@ -47,7 +47,7 @@
     </div>
 </div>
 
-<div class="control-container">
+<div class="control-container" id="control">
     <%- include('partials/control') -%>
 </div>
 

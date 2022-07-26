@@ -10,9 +10,12 @@
 
     <select name="EpisodesSelector" id="select-episodes" class="select-episodes">
         <option value="">List Episodes</option>
-        <option value="">Episode 1</option>
-        <option value="">Episode 2</option>
-        <option value="">Episode 3</option>
+        <%anime.videos.episodes.forEach(ep=> { console.log(ep); %>
+            %>
+            <option value="<%=ep.id%>">Episode <%=ep.id%></option>
+            <%
+        })%>
+
     </select>
 
     <a class="control-episodes-arrow">
