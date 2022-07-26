@@ -1,6 +1,5 @@
-
+<script>let temp_ep = 1</script>
 <div class="control-episodes">
-
     <a class="control-episodes-arrow">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" />
@@ -10,19 +9,17 @@
 
     <select name="EpisodesSelector" id="select-episodes" class="select-episodes" onchange="changeEp(this)">
         <option value="default">List Episodes</option>
-        <%anime.videos.episodes.forEach(ep=> { console.log(ep); %>
+        <%anime.videos.episodes.forEach(ep=> { console.log(ep);
             %>
             <option value="<%=ep.players[0].url%>" id="<%=ep.id%>">Episode <%=ep.id%></option>
             <%
         })%>
-
     </select>
 
     <script>
         function changeEp(el) {
             const option = el.value;
             if (option === 'default') return
-            console.log(option);
             const ep_selector =  document.getElementById('select-episodes')
             const option_selected = ep_selector.options[ep_selector.selectedIndex]
             if (history.pushState) {
@@ -30,7 +27,18 @@
                 window.history.pushState({path:newurl},'',newurl);
             }
             document.getElementById('player').src = el.value;
+            temp_ep = option_selected.id;
+            console.log(temp_ep);
             return option;
+        }
+
+        function getParameterByName(name, url = window.location.href) {
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
         }
     </script>
 
@@ -42,11 +50,11 @@
     </a>
 </div>
 <div class="control-player">
-    <%anime.videos.episodes.find(ep=>ep.id===parseInt(req.query.ep_id))%>
+
+    <%console.log(anime.videos.episodes.find(ep=>ep.id===parseInt(2)))%>
     <a class="control-episodes-arrow control-player-button">
         <p>Player 1</p>
     </a>
-
 </div>
 
 <style>
