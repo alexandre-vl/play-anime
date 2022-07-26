@@ -11,7 +11,7 @@ const db = require('./database/database');
 const path = require('path');
 const mongoose = require('mongoose');
 
-db.then(() => {
+db.connect().then(() => {
     console.log('Connected to database');
 }).catch(err => {
     console.log(err);
@@ -25,10 +25,12 @@ app.use(cors());
 // Routes
 const authRoute = require('./routes/auth');
 const dashboardRoute = require('./routes/dashboard');
-const movieRoute = require('./routes/movies');
+const movieDbRoute = require('./routes/moviesdb');
 const searchRoute = require('./routes/search');
 const homeRoute = require('./routes/home');
 const animeRoute = require('./routes/anime');
+const seriesRoute = require('./routes/series');
+const moviesRoute = require('./routes/movies');
 
 app.use(session({
     secret: process.env.CLIENT_SECRET,
@@ -54,9 +56,11 @@ app.use(passport.session());
 // Middleware Routes
 app.use('/auth', authRoute);
 app.use('/dashboard', dashboardRoute);
-app.use('/api', movieRoute);
+app.use('/api', movieDbRoute);
 app.use('/search', searchRoute);
 app.use('/anime', animeRoute);
+app.use('/series', seriesRoute);
+app.use('/movies', moviesRoute);
 app.use('/', homeRoute);
 
 

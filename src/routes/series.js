@@ -3,7 +3,7 @@ const {fetchDb, shuffleArray} = require('../database/database')
 
 router.get('/', async (req, res) => {
 
-    res.render('movies', {user: req.user, logged: !!req.user, data:  {movies: shuffleArray(await fetchDb({type: 'Movie', sort:"rating,desc"}))}})
+    res.render('series', {user: req.user, logged: !!req.user, data:  {series: shuffleArray(await fetchDb({type: 'Serie', sort:"rating,desc"}))}})
 
 })
 

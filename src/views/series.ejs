@@ -1,0 +1,89 @@
+<%- include('partials/header') -%>
+<%- include('partials/navbar') -%>
+
+<div class="series-container">
+    <div class="series-container__header">
+        <div class="series-section-text">
+            <a class="series-section-title" href="/series">🎬 Series</a>
+        </div>
+        <div class="series-list">
+            <% data.series.forEach((item) => { %>
+            <div class="series-list-item">
+                <a href="/anime/?name=<%=item.name%>">
+                    <img src="<%=item.img%>" alt="Image" class="series-list-img">
+                    <p><%=item.name%></p>
+                </a>
+            </div>
+            <% })%>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/footer') -%>
+
+<style>
+
+    .series-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 5rem 0;
+    }
+
+    .series-container__header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: fit-content;
+    }
+
+    .series-list {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .series-section-text {
+        width: 100%;
+        margin-bottom: 1rem !important;
+    }
+
+    .series-section-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #4A4A4A !important;
+    }
+
+    .series-list-item {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 200px;
+        height: 300px;
+        margin-top: 1rem;
+    }
+
+    .series-list-item img {
+        width: 200px;
+        height: 300px;
+        border-radius: 10px;
+    }
+
+    @media screen and (max-width: 422px) {
+        .series-list-item {
+            width: 150px;
+            height: 220px;
+        }
+
+        .series-list-item img {
+            width: 150px;
+            height: 220px;
+        }
+    }
+</style>
