@@ -87,6 +87,7 @@
     .intro-container {
         display: flex;
         flex-direction: row;
+        justify-content: center;
         gap: 25px;
         width: 100%;
     }
@@ -102,6 +103,8 @@
         display: flex;
         flex-direction: column;
         gap: 10px;
+        width: 260px;
+        height: 390px;
     }
 
     .intro-preview-img {
@@ -124,6 +127,7 @@
     .intro-subcase {
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
         gap: 6px;
         font-size: 14px;
     }
@@ -220,12 +224,40 @@
     }
 
     .control-container {
-        padding: 20px 20rem;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 
     .anime-container {
         width: 100%;
-        padding: 2rem 20rem 5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem 0 5rem;
+    }
+
+    @media screen and (max-width: 1440px) {
+        .anime-header {
+            padding: 2rem 0 5rem;
+        }
+    }
+
+    @media screen and (max-width: 840px) {
+       .intro-container {
+           flex-direction: column;
+           justify-content: center;
+           align-items: center;
+       }
+    }
+
+    @media screen and (max-width: 650px) {
+        .intro-text {
+            padding: 0 20px;
+            width: 100%;
+        }
     }
 
 </style>
