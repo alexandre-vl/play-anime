@@ -68,7 +68,7 @@
                 searchResults.innerHTML = '';
                 if (search.length > 0) {
                     search.forEach((item, index) => {
-                        searchResults.innerHTML += `<a class="navbar-item" href="/anime/?id=${item._id}">${item.name}</a>`
+                        searchResults.innerHTML += `<a class="navbar-item" href="/anime/?name=${item.name}">${item.name}</a>`
                     })
                 } else {
                     searchResults.innerHTML = '<a class="navbar-item">No results</a>'

@@ -1,1 +1,206 @@
-<p><%= anime%></p>
+<div class="anime-background"></div>
+<%- include('partials/header') -%>
+<%- include('partials/navbar') -%>
+
+<div class="anime-header">
+    <div class="intro-container">
+        <div class="intro-preview">
+            <img class="intro-preview-img" src="<%= anime.img %>" alt="<%= anime.name %>">
+            <div class="intro-desc-rating">
+                <p>Rating:</p>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+                <span class="intro-desc-value"><%=anime.rating%>/10</span>
+            </div>
+        </div>
+        <div class="intro-text">
+            <div class="intro-title">
+                <h1><%=anime.name%></h1>
+                <div class="intro-subcase">
+                    <h2><%=anime.type[0]%></h2>
+                    &middot;
+                    <h2><%=anime.day%>/<%=anime.month%>/<%=anime.year%></h2>
+                    &middot;
+                    <h2 class="genre-list"><%=anime.genre.join(", ")%></h2>
+                    &middot;
+                    <h2><%=anime.duration.toLowerCase().includes('h') ? anime.duration : anime.duration + " episode(s)"%></h2>
+                </div>
+            </div>
+            <div class="intro-buttons">
+                <a class="intro-button-watch">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                    </svg>
+                    <span>Watch</span>
+                </a>
+                <a class="intro-button">
+                    <span>Trailer</span>
+                </a>
+            </div>
+            <div class="intro-desc">
+                <p><%=anime.description%></p>
+                <p>Directed by: <span class="intro-desc-value"><%=anime.director%></span></p>
+                <p>Produced by: <span class="intro-desc-value"><%=anime.director%></span></p>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/footer') -%>
+
+<style>
+    .anime-background {
+        position: fixed;
+        left: 0;
+        right: 0;
+        background-image: url("<%= anime.img %>");
+        background-color: rgba(0, 0, 0, 0.3);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-blend-mode: darken;
+        height: 100vh;
+        -webkit-filter: blur(10px);
+        -moz-filter: blur(10px);
+        -o-filter: blur(10px);
+        -ms-filter: blur(10px);
+        filter: blur(10px);
+        z-index: -1;
+    }
+
+    .anime-header {
+        width: 100%;
+        padding: 5rem 20rem;
+    }
+
+    .intro-container {
+        display: flex;
+        flex-direction: row;
+        gap: 25px;
+        width: 100%;
+    }
+
+    .intro-text {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 500px;
+    }
+
+    .intro-preview {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .intro-preview-img {
+        width: 260px;
+        height: 390px;
+        border-radius: 5px;
+    }
+
+    .intro-title h1 {
+        display: flex;
+        flex-direction: column;
+        font-size: 23px;
+        font-weight: 800 !important;
+    }
+
+    .genre-list {
+        color: #edb500 !important;
+    }
+
+    .intro-subcase {
+        display: flex;
+        flex-direction: row;
+        gap: 6px;
+        font-size: 14px;
+    }
+
+    .intro-subcase h2{
+        font-weight: 400;
+        font-size: 14px;
+        color: #dadada;
+    }
+
+    .intro-desc {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        color: #dadada;
+    }
+
+    .intro-desc-value {
+        color: #edb500 !important;
+    }
+
+    .intro-desc-rating {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .intro-desc-rating svg{
+        width: 20px;
+        height: 20px;
+        fill: #edb500;
+    }
+
+    .intro-buttons {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .intro-button-watch {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        background-color: #C8472C;
+        border-radius: 10px;
+        width: fit-content;
+        padding: 8px 20px;
+        font-size: 1em;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+    .intro-button-watch:hover {
+        background-color: #edb500;
+    }
+
+    .intro-button {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        background-color: #373b3f;
+        border-radius: 10px;
+        width: fit-content;
+        padding: 8px 20px;
+        font-size: 1em;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+    .intro-button:hover {
+        background-color: #54585b;
+    }
+
+    .intro-button-watch span, .intro-button span {
+        font-size: 16px;
+        color: #fff;
+    }
+
+    .intro-button-watch svg {
+        width: 20px;
+        height: 20px;
+        fill: #fff;
+    }
+
+</style>
