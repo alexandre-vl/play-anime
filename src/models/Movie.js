@@ -16,7 +16,7 @@ const movieSchema = new mongoose.Schema({
   director: {type: String, required: true},
   videos: {
     trailer: {type: String, required: true},
-    episodes: {type: Array, required: true},
+    players: {type: Array, required: true},
   }
 })
 

@@ -1,4 +1,4 @@
-<script>let temp_ep = 1</script>
+
 <div class="control-episodes">
     <a class="control-episodes-arrow">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -7,40 +7,13 @@
         <p>Previous</p>
     </a>
 
-    <select name="EpisodesSelector" id="select-episodes" class="select-episodes" onchange="changeEp(this)">
-        <option value="default">List Episodes</option>
-        <%anime.videos.episodes.forEach(ep=> { console.log(ep);
+    <select name="EpisodesSelector" id="select-episodes" class="select-episodes" onchange="changeEp(this.value, new URLSearchParams(window.location.search).get('player_id'))">
+        <%anime.videos.players[0].episodes.forEach(ep=> {
             %>
-            <option value="<%=ep.players[0].url%>" id="<%=ep.id%>">Episode <%=ep.id%></option>
+            <option value="<%=ep.id%>" id="<%=ep.id%>">Episode <%=ep.id%></option>
             <%
         })%>
     </select>
-
-    <script>
-        function changeEp(el) {
-            const option = el.value;
-            if (option === 'default') return
-            const ep_selector =  document.getElementById('select-episodes')
-            const option_selected = ep_selector.options[ep_selector.selectedIndex]
-            if (history.pushState) {
-                const newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?name=<%=anime.name%>&ep_id='+option_selected.id;
-                window.history.pushState({path:newurl},'',newurl);
-            }
-            document.getElementById('player').src = el.value;
-            temp_ep = option_selected.id;
-            console.log(temp_ep);
-            return option;
-        }
-
-        function getParameterByName(name, url = window.location.href) {
-            name = name.replace(/[\[\]]/g, '\\$&');
-            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-                results = regex.exec(url);
-            if (!results) return null;
-            if (!results[2]) return '';
-            return decodeURIComponent(results[2].replace(/\+/g, ' '));
-        }
-    </script>
 
     <a class="control-episodes-arrow">
         <p>Next</p>
@@ -50,12 +23,71 @@
     </a>
 </div>
 <div class="control-player">
+    <%anime.videos.players.forEach(p=>{%>
+        <a class="control-episodes-arrow control-player-button" id="<%=p.id%>" onclick="changePlayer(<%=p.id%>)">
+            <p>Player <%=p.id%></p>
+        </a>
+    <%}) %>
 
-    <%console.log(anime.videos.episodes.find(ep=>ep.id===parseInt(2)))%>
-    <a class="control-episodes-arrow control-player-button">
-        <p>Player 1</p>
-    </a>
 </div>
+
+<script>
+    function changeEp(el) {
+
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const player_param = urlParams.get('player_id');
+        const ep_selector =  document.getElementById('select-episodes')
+        const option_selected = ep_selector.options[ep_selector.selectedIndex]
+
+        urlParams.has('ep_id') ? urlParams.set('ep_id', option_selected.id) : urlParams.append('ep_id', option_selected.id);
+        window.history.replaceState(null, null, "?"+urlParams.toString().replaceAll("+", "%20"));
+
+        fetch('episodes',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                ep_id: option_selected.id,
+                anime_name: "<%=anime.name%>",
+                player_id: player_param ?? 1,
+            })
+        }).then(res=>res.json()).then(data=>{
+            const player = document.getElementById('player')
+            player.src = data.url
+        })
+    }
+
+    function changePlayer(player) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const player_param = urlParams.get('player_id');
+        const ep_param = urlParams.get('ep_id');
+        if (parseInt(player_param) === player) return;
+        urlParams.has('player_id') ? urlParams.set('player_id', player) : urlParams.append('player_id', player);
+        window.history.replaceState(null, null, "?"+urlParams.toString().replaceAll("+", "%20"));
+
+        fetch('episodes',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                ep_id: ep_param,
+                anime_name: "<%=anime.name%>",
+                player_id: player,
+            })
+        }).then(res=>res.json()).then(data=>{
+            const player = document.getElementById('player')
+            player.src = data.url
+        })
+    }
+
+    window.onload = (event) => {
+        changeEp("1")
+    };
+
+</script>
 
 <style>
     .control-episodes {

@@ -191,16 +191,34 @@
     "director": "Eiichiro Oda",
     "videos": {
       "trailer": "https://www.youtube.com/embed/QH2-TGUlwu4",
-      "episodes": [
-        {
-          "id": 1,
-          "players": {
-            "1": {
-              "url": "https://www.youtube.com/embed/QH2-TGUlwu4"
-            }
+        "players": [
+          {
+            "id": 1,
+            "episodes": [
+              {
+                "id": 1,
+                "url": "https://www.youtube.com/embed/QH2-TGUlwu4"
+              },
+              {
+                "id": 2,
+                "url": "https://www.youtube.com/embed/QH2-TGUlwu4"
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "episodes": [
+              {
+                "id": 1,
+                "url": "https://www.youtube.com/embed/QH2-TGUlwu4"
+              },
+              {
+                "id": 2,
+                "url": "https://www.youtube.com/embed/QH2-TGUlwu4"
+              }
+            ]
           }
-        }
-      ]
+        ]
     }
   },
   {
@@ -211,33 +229,48 @@
       "month": "10",
       "day": "02"
     },
-    "genre": ["Action", "Adventure", "Comedy"],
-    "type": ["Serie"],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Comedy"
+    ],
+    "type": [
+      "Serie"
+    ],
     "description": "Twilight, le plus grand espion du monde, doit pour sa nouvelle mission créer une famille de toutes pièces afin de pouvoir s'introduire dans la plus prestigieuse école de l'aristocratie. Totalement dépourvu d'expérience familiale, il va adopter une petite fille en ignorant qu'elle est télépathe, et s'associer à une jeune femme timide, sans se douter qu'elle est une redoutable tueuse à gages. Ce trio atypique va devoir composer pour passer inaperçu, tout en découvrant les vraies valeurs d'une famille unie et aimante.",
     "rating": "9.26",
     "duration": "24",
     "director": "Eiichiro Oda",
     "videos": {
       "trailer": "https://www.youtube.com/embed/QH2-TGUlwu4",
-      "episodes": [
+      "players": [
         {
           "id": 1,
-          "players": [
+          "episodes": [
             {
+              "id": 1,
               "url": "https://video.sibnet.ru/shell.php?videoid=4668331"
+            },
+            {
+              "id": 2,
+              "url": "https://video.sibnet.ru/shell.php?videoid=4675018"
             }
           ]
         },
         {
           "id": 2,
-          "players": [
+          "episodes": [
             {
-              "url": "https://video.sibnet.ru/shell.php?videoid=4675018"
+              "id": 1,
+              "url": "https://sendvid.com/embed/fbgk9twa"
+            },
+            {
+              "id": 2,
+              "url": "https://sendvid.com/embed/y624xekh"
             }
           ]
         }
       ]
     }
   }
-
-]
+  ]
