@@ -1,0 +1,151 @@
+<div class="manage-support-search">
+    <div class="manage-search-bar">
+        <div class="manage-bar-container">
+            <input type="text" placeholder="Fast search..." onkeyup="sendDataManage(this)"/>
+            <section id="searchResultsManage" ></section>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function sendDataManage(e) {
+        const searchResults = document.getElementById('searchResultsManage');
+        let match = e.value.match(/^[a-zA-Z\d]+$/);
+        let match2 = e.value.match(/\s*/)
+
+        if (match2[0] === e.value) {
+            searchResults.innerHTML = '';
+            return;
+        }
+        if (match[0] === e.value) {
+            fetch('search', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    search: e.value
+                })
+            }).then(res => res.json()).then(data => {
+                let search = data.search
+                searchResults.innerHTML = '';
+                if (search.length > 0) {
+                    search.forEach((item, index) => {
+                        searchResults.innerHTML += `<a class="navbar-item" href="/anime/?name=${item.name}">${item.name}</a>`
+                    })
+                } else {
+                    searchResults.innerHTML = '<a class="navbar-item">No results</a>'
+                }
+            })
+        }
+    }
+    function showSearchManage() {
+        document.getElementById("searchResultsManage").style.visibility = "visible";
+    }
+
+    function hideSearchManage() {
+        document.getElementById("searchResultsManage").style.visibility = "hidden";
+
+    }
+</script>
+
+<style>
+
+
+    .manage-bar-container input::placeholder, manage-.bar-container input {
+        color: #fff !important;
+    }
+
+    .manage-support-search {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .navbar-item a {
+        z-index: 99;
+    }
+
+    #searchResultsManage {
+        z-index: 99;
+        top: 45px;
+        background-color: white;
+        position: absolute;
+        width: 250px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        visibility: hidden;
+        box-shadow: 0px 0px 10px rgba(53, 53, 53, 0.21);
+    }
+
+    #searchResultsManage:hover{
+        visibility: visible;
+    }
+
+    #searchResultsManage a {
+        color: #C8472C !important;
+    }
+
+    #searchResultsManage a:last-child {
+        border-bottom-right-radius: 5px !important;
+        border-bottom-left-radius: 5px !important;
+    }
+
+    #searchResultsManage a:hover {
+        background-color: #d05c46 !important;
+        color: #fff !important;
+    }
+
+    .manage-bar-container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+
+    .manage-search-bar{
+        height: 50px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .manage-search-bar input {
+        height: 35px;
+        width: 250px;
+        display: block;
+        background-color: transparent;
+        border: 1px solid #bababa;
+        border-radius: 10px;
+        padding: 0 10px 0 54px;
+        background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='18' height='18' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Cdefs%3E%3Cpath d='M18.5 17h-.79l-.28-.27a6.5 6.5 0 10-.7.7l.27.28v.79l5 4.99L23.49 22l-4.99-5zm-6 0a4.5 4.5 0 11-.01-8.99A4.5 4.5 0 0112.5 17z' id='a'/%3E%3C/defs%3E%3Cg transform='translate(-6 -6)' fill='none' fill-rule='evenodd'%3E%3Cmask id='b' fill='%23fff'%3E%3Cuse xlink:href='%23a'/%3E%3C/mask%3E%3Cg mask='url(%23b)' fill='%23D8D8D8'%3E%3Cpath d='M3 3h24v24H3z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-size: 16px;
+        background-position: 25px 50%;
+        color: #7c7c7c;
+        font-size: 16px;
+    }
+
+    .manage-search-bar input:focus {
+        outline: none;
+    }
+
+    .manage-search-bar input:focus + #searchResultsManage {
+        visibility: visible;
+    }
+
+    @media screen and (max-width: 1024px) {
+        .manage-navbar-item {
+            color: #C8472C !important;
+        }
+        #searchResultsManage {
+            z-index: 99;
+        }
+        .manage-bar-container input::placeholder, .manage-bar-container input {
+            color: #C8472C !important;
+        }
+    }
+</style>

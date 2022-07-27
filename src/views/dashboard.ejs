@@ -1,16 +1,54 @@
 <%- include('partials/header') -%>
 <%- include('partials/navbar') -%>
+
+<div class="manage-container">
+   <div class="manage-bar">
+       <%- include('partials/dashboard/searchbar') -%>
+   </div>
+    <a class="button-create" onclick="createAnime()">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+        </svg>
+        <p>Create</p>
+    </a>
+</div>
+
 <div class="is-flex is-flex-direction-row is-flex-wrap-wrap is-justify-content-center is-8 p-6" style="gap: 50px">
-    <% user.guilds.sort(
-        function(x, y) {
-            if (x.owner !== y.owner) {
-                return x.owner ? -1 : 1;
-            } else {
-                return (((x.permissions & 0x8) === 0x8) === ((y.permissions & 0x8) === 0x8))? 0 : x? -1 : 1;
-            }
-        }).forEach((guild) => { %>
-        <%- include('partials/dashboard/guilds', { guild }) -%>
+    <% movies.forEach((movie) => { %>
+        <%- include('partials/dashboard/movies', { movie }) -%>
     <% }) %>
 </div>
 
 <%- include('partials/footer') -%>
+
+<style>
+    .manage-container {
+        padding: 2rem 0;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .button-create {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        background-color: #C8472C;
+        border-radius: 10px;
+        padding: 8px 10px;
+        height: fit-content;
+        width: fit-content;
+        color: white !important;
+        font-size: 14px;
+    }
+
+    .button-create svg {
+        width: 20px;
+        height: 20px;
+    }
+</style>

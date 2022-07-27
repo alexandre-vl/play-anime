@@ -1,15 +1,13 @@
 
 <div class="card-server">
-    <div class="card-server-image" style="background-image: url(https://cdn.discordapp.com/icons/<%=guild.id%>/<%=guild.icon%>.png)">
-        <figure class="image-container is-4by3" style=" backdrop-filter: blur(10px); display: flex; flex-direction: column; justify-content: center; align-items: center">
-            <img src="<%= `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`%>" alt="Placeholder image" id="image-t" />
+    <div class="card-server-image" style="background-image: url(<%=movie.img%>)" loading="lazy">
+        <figure class="image-container is-4by3" style=" backdrop-filter: blur(5px); display: flex; flex-direction: column; justify-content: center; align-items: center">
         </figure>
     </div>
     <div class="card-server-content" style="height:50%; display: flex !important; flex-direction: column; justify-content: space-between">
         <div class="media">
             <div class="media-content">
-                <p class="server-title is-4"><%= guild.name%></p>
-                <p class="server-subtitle is-6"><%= guild.owner ? "Owner" : (((guild.permissions & 0x8) === 0x8) ? "Manage Bot" : "Member")%></p>
+                <p class="server-title is-4"><%= movie.name%></p>
             </div>
         </div>
 
@@ -18,6 +16,27 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var lazyBackgrounds = [].slice.call(document.querySelectorAll(".card-server-image"));
+
+        if ("IntersectionObserver" in window) {
+            let lazyBackgroundObserver = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                        lazyBackgroundObserver.unobserve(entry.target);
+                    }
+                });
+            });
+
+            lazyBackgrounds.forEach(function(lazyBackground) {
+                lazyBackgroundObserver.observe(lazyBackground);
+            });
+        }
+    });
+</script>
 
 
 <style>
@@ -28,6 +47,7 @@
         height: 400px;
         box-sizing: border-box !important;
     }
+
     .card-server-content {
         padding: 20px 30px;
     }
@@ -59,6 +79,7 @@
     .server-title {
         font-size: 20px;
         font-weight: bold;
+        color: #2f2f2f;
     }
 
 </style>
