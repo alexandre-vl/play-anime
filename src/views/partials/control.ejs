@@ -1,13 +1,13 @@
 
 <div class="control-episodes">
-    <a class="control-episodes-arrow">
+    <a class="control-episodes-arrow" onclick="changeEp('prev')">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" />
         </svg>
         <p>Previous</p>
     </a>
 
-    <select name="EpisodesSelector" id="select-episodes" class="select-episodes" onchange="changeEp(this.value, new URLSearchParams(window.location.search).get('player_id'))">
+    <select name="EpisodesSelector" id="select-episodes" class="select-episodes" onchange="changeEp()">
         <%anime.videos.players[0].episodes.forEach(ep=> {
             %>
             <option value="<%=ep.id%>" id="<%=ep.id%>">Episode <%=ep.id%></option>
@@ -15,7 +15,7 @@
         })%>
     </select>
 
-    <a class="control-episodes-arrow">
+    <a class="control-episodes-arrow" onclick="changeEp('next')">
         <p>Next</p>
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
@@ -32,13 +32,23 @@
 </div>
 
 <script>
-    function changeEp(el) {
-
-
+    function changeEp(stats = "none") {
         const urlParams = new URLSearchParams(window.location.search);
         const player_param = urlParams.get('player_id');
         const ep_selector =  document.getElementById('select-episodes')
         const option_selected = ep_selector.options[ep_selector.selectedIndex]
+        if (stats === "next") {
+            const ep_next = ep_selector.options[ep_selector.selectedIndex + 1]
+            if (!ep_next) return
+            option_selected.id = ep_next.value
+            ep_selector.value = ep_next.value
+
+        } else if (stats === "prev") {
+            const ep_prev = ep_selector.options[ep_selector.selectedIndex - 1]
+            if (!ep_prev) return
+            option_selected.id = ep_prev.value
+            ep_selector.value = ep_prev.value
+        }
 
         urlParams.has('ep_id') ? urlParams.set('ep_id', option_selected.id) : urlParams.append('ep_id', option_selected.id);
         window.history.replaceState(null, null, "?"+urlParams.toString().replaceAll("+", "%20"));
@@ -84,7 +94,7 @@
     }
 
     window.onload = (event) => {
-        changeEp("1")
+        changeEp()
     };
 
 </script>

@@ -15,22 +15,32 @@
     "director": "Masashi Kishimoto",
     "videos": {
       "trailer": "https://www.youtube.com/embed/QH2-TGUlwu4",
-      "episodes": [
+      "players": [
         {
           "id": 1,
-          "players": {
-            "1": {
-              "url": "https://video.sibnet.ru/shell.php?videoid=4668331"
+          "episodes": [
+            {
+              "id": 1,
+              "url": "https://www.youtube.com/embed/QH2-TGUlwu4"
+            },
+            {
+              "id": 2,
+              "url": "https://www.youtube.com/embed/QH2-TGUlwu4"
             }
-          }
+          ]
         },
         {
           "id": 2,
-          "players": {
-            "1": {
-              "url": "https://video.sibnet.ru/shell.php?videoid=4675018"
+          "episodes": [
+            {
+              "id": 1,
+              "url": "https://www.youtube.com/embed/QH2-TGUlwu4"
+            },
+            {
+              "id": 2,
+              "url": "https://www.youtube.com/embed/QH2-TGUlwu4"
             }
-          }
+          ]
         }
       ]
     }
@@ -51,14 +61,32 @@
     "director": "Eiichiro Oda",
     "videos": {
       "trailer": "https://www.youtube.com/embed/QH2-TGUlwu4",
-      "episodes": [
+      "players": [
         {
           "id": 1,
-          "players": {
-            "1": {
+          "episodes": [
+            {
+              "id": 1,
+              "url": "https://www.youtube.com/embed/QH2-TGUlwu4"
+            },
+            {
+              "id": 2,
               "url": "https://www.youtube.com/embed/QH2-TGUlwu4"
             }
-          }
+          ]
+        },
+        {
+          "id": 2,
+          "episodes": [
+            {
+              "id": 1,
+              "url": "https://www.youtube.com/embed/QH2-TGUlwu4"
+            },
+            {
+              "id": 2,
+              "url": "https://www.youtube.com/embed/QH2-TGUlwu4"
+            }
+          ]
         }
       ]
     }
@@ -79,14 +107,32 @@
     "director": "Eiichiro Oda",
     "videos": {
       "trailer": "https://www.youtube.com/embed/QH2-TGUlwu4",
-      "episodes": [
+      "players": [
         {
           "id": 1,
-          "players": {
-            "1": {
+          "episodes": [
+            {
+              "id": 1,
+              "url": "https://www.youtube.com/embed/QH2-TGUlwu4"
+            },
+            {
+              "id": 2,
               "url": "https://www.youtube.com/embed/QH2-TGUlwu4"
             }
-          }
+          ]
+        },
+        {
+          "id": 2,
+          "episodes": [
+            {
+              "id": 1,
+              "url": "https://www.youtube.com/embed/QH2-TGUlwu4"
+            },
+            {
+              "id": 2,
+              "url": "https://www.youtube.com/embed/QH2-TGUlwu4"
+            }
+          ]
         }
       ]
     }
@@ -107,14 +153,32 @@
     "director": "Eiichiro Oda",
     "videos": {
       "trailer": "https://www.youtube.com/embed/QH2-TGUlwu4",
-      "episodes": [
+      "players": [
         {
           "id": 1,
-          "players": {
-            "1": {
+          "episodes": [
+            {
+              "id": 1,
+              "url": "https://www.youtube.com/embed/QH2-TGUlwu4"
+            },
+            {
+              "id": 2,
               "url": "https://www.youtube.com/embed/QH2-TGUlwu4"
             }
-          }
+          ]
+        },
+        {
+          "id": 2,
+          "episodes": [
+            {
+              "id": 1,
+              "url": "https://www.youtube.com/embed/QH2-TGUlwu4"
+            },
+            {
+              "id": 2,
+              "url": "https://www.youtube.com/embed/QH2-TGUlwu4"
+            }
+          ]
         }
       ]
     }
@@ -135,14 +199,32 @@
     "director": "Eiichiro Oda",
     "videos": {
       "trailer": "https://www.youtube.com/embed/QH2-TGUlwu4",
-      "episodes": [
+      "players": [
         {
           "id": 1,
-          "players": {
-            "1": {
+          "episodes": [
+            {
+              "id": 1,
+              "url": "https://www.youtube.com/embed/QH2-TGUlwu4"
+            },
+            {
+              "id": 2,
               "url": "https://www.youtube.com/embed/QH2-TGUlwu4"
             }
-          }
+          ]
+        },
+        {
+          "id": 2,
+          "episodes": [
+            {
+              "id": 1,
+              "url": "https://www.youtube.com/embed/QH2-TGUlwu4"
+            },
+            {
+              "id": 2,
+              "url": "https://www.youtube.com/embed/QH2-TGUlwu4"
+            }
+          ]
         }
       ]
     }
@@ -163,14 +245,32 @@
     "director": "Eiichiro Oda",
     "videos": {
       "trailer": "https://www.youtube.com/embed/QH2-TGUlwu4",
-      "episodes": [
+      "players": [
         {
           "id": 1,
-          "players": {
-            "1": {
+          "episodes": [
+            {
+              "id": 1,
+              "url": "https://www.youtube.com/embed/QH2-TGUlwu4"
+            },
+            {
+              "id": 2,
               "url": "https://www.youtube.com/embed/QH2-TGUlwu4"
             }
-          }
+          ]
+        },
+        {
+          "id": 2,
+          "episodes": [
+            {
+              "id": 1,
+              "url": "https://www.youtube.com/embed/QH2-TGUlwu4"
+            },
+            {
+              "id": 2,
+              "url": "https://www.youtube.com/embed/QH2-TGUlwu4"
+            }
+          ]
         }
       ]
     }
