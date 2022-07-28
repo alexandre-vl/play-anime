@@ -33,4 +33,8 @@ router.post('/delete' , (req, res) => {
     res.json({message: 'deleted'})
 })
 
+router.post('/edit', async (req, res) => {
+    res.render('partials/dashboard/edit', {user: req.user, logged: !!req.user, anime: req.body.anime})
+})
+
 module.exports = router;

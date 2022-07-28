@@ -12,7 +12,7 @@
         </div>
 
         <div class="is-flex" style="display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 50px">
-            <button class="button is-light">Settings</button>
+            <a class="button is-light" onclick="editButton('<%=movie.id%>', `<%=movie.name%>`)">Settings</a>
             <div class="confirm-buttons">
                 <button class="button cancel-button cancel-case-<%=movie.id%>" onclick="cancelButton('<%=movie.id%>')">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

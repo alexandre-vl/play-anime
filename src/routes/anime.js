@@ -27,8 +27,17 @@ router.post('/create', async (req, res) => {
     } catch (error) {
         return res.status(404).send('Not found')
     }
+})
 
+router.post('/edit', async (req, res) => {
+    try {
+        let anime = await Movie.findOne({name: req.body.name})
+        res.render('partials/dashboard/edit', {user: req.user, logged: !!req.user, anime: anime})
+        console.log(res)
 
+    } catch (error) {
+        return res.status(404).send('Not found')
+    }
 })
 
 module.exports = router;

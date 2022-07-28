@@ -63,7 +63,27 @@
                 name: name
             })
         }).then(res => res.json()).then(data => {
+
             document.querySelector(".card-"+id).style.display = "none";
+        })
+    }
+
+    function editButton(id, name) {
+        console.log(id, name);
+        fetch('anime/edit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: id,
+                name: name
+            })
+        }).then(data => {
+            location.reload()
+            console.log("ok")
+        }).catch(err => {
+            console.log(err)
         })
     }
 </script>
