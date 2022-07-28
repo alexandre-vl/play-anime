@@ -13,7 +13,8 @@ const movieSchema = new mongoose.Schema({
   description: {type: String, required: true},
   type: {type: Array, required: true},
   duration: {type: String, required: true},
-  director: {type: String, required: true},
+  creator: {type: String, required: true},
+  casting: {type: String, required: true},
   videos: {
     trailer: {type: String, required: true},
     players: {type: Array, required: true},

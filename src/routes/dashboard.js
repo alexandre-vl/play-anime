@@ -17,4 +17,20 @@ router.get('/settings' , isAuthenticated, (req, res) => {
     res.sendStatus(200)
 })
 
+router.get('/create' , isAuthenticated, (req, res) => {
+    res.render('partials/dashboard/create', {user: req.user, logged: !!req.user})
+})
+
+router.post('/delete' , (req, res) => {
+    console.log(req.body)
+    Movie.deleteOne({_id: req.body.id}, (err) => {
+        if (err) {
+            console.log(err)
+            return res.json({message: 'error'})
+        }
+
+    })
+    res.json({message: 'deleted'})
+})
+
 module.exports = router;

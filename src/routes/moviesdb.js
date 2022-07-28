@@ -27,10 +27,7 @@ router.get('/', async (req, res) => {
 
         const typeOptions = [
             "Movie",
-            "Serie",
-            "OVA",
-            "ONA",
-            "Special"
+            "Serie"
         ]
 
         genre === "All" ? (genre = [...genreOptions]) : (genre = req.query.genre.split(','));
