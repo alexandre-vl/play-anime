@@ -9,7 +9,6 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/episodes', async (req, res) => {
-
     let result = await Movie.find({name: req.body.anime_name})
     if (result.length < 1) return res.status(404).send('Not found')
     let anime = result[0]
@@ -18,6 +17,18 @@ router.post('/episodes', async (req, res) => {
     let episode = player.episodes.find(e => e.id === parseInt(req.body.ep_id) ?? 1)
     if (!episode) return res.status(404).send('Not found')
     res.json({url: episode.url})
+})
+
+router.post('/create', async (req, res) => {
+    try {
+        let result = await Movie.insertMany([req.body.anime])
+        if (!result) return res.status(404).send('Not found')
+        res.json({anime: result})
+    } catch (error) {
+        return res.status(404).send('Not found')
+    }
+
+
 })
 
 module.exports = router;

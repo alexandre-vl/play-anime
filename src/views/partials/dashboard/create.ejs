@@ -29,7 +29,6 @@
 
         <label for="type">Type</label>
         <div class="type">
-
             <div>
                 <input type="radio" id="movie" name="type" value="movie"
                        checked>
@@ -60,17 +59,150 @@
         <textarea id="description" name="description" placeholder="Description" style="height:200px"></textarea>
     </form>
 
-    <a class="button-create" href="dashboard/create">
+    <form id="form-player">
+        <div>
+            <label for="description">Player 1</label>
+            <textarea id="description" name="player_0" placeholder="https://video.sibnet.ru/shell.php?videoid=4668331&#10;https://video.sibnet.ru/shell.php?videoid=4568339&#10;https://video.sibnet.ru/shell.php?videoid=4346361" style="height:200px"></textarea>
+        </div>
+        <div id="other-fields"></div>
+    </form>
+    <button id="add-btn">Add more player</button>
+
+    <a class="button-create" id="display-btn">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
         </svg>
         <p>Create</p>
     </a>
+
+    <div class="error-container">
+        <p class="error-message">Error! Please fill in all the information fields</p>
+    </div>
 </div>
+
+<script>
+    const addBtn = document.getElementById("add-btn");
+    const otherFields = document.getElementById("other-fields");
+    const form = document.getElementById("form-creation");
+    const formPlayer = document.getElementById("form-player");
+    const displayBtn = document.getElementById("display-btn");
+
+    let nbOtherFields = 1;
+    addBtn.addEventListener("click", function() {
+        const div = document.createElement("div");
+        const label = document.createElement("label");
+        label.innerHTML = "Player " + (nbOtherFields + 1);
+        const input = document.createElement("textarea");
+        input.name = `player_${nbOtherFields}`;
+        input.id = 'description'
+        input.style.height = "200px";
+        input.placeholder = "https://video.sibnet.ru/shell.php?videoid=4668331\nhttps://video.sibnet.ru/shell.php?videoid=4568339\nhttps://video.sibnet.ru/shell.php?videoid=4346361";
+        input.style.marginBottom = "0";
+        const button = document.createElement("button");
+        button.innerHTML = "Remove";
+        button.id = `remove-btn-${nbOtherFields}`;
+        button.classList.add("remove-btn");
+
+        div.append(label);
+        div.append(input);
+        div.append(button);
+        otherFields.append(div);
+
+        button.addEventListener("click", function() {
+            div.remove();
+            nbOtherFields--;
+        });
+
+        nbOtherFields++;
+    });
+
+    displayBtn.addEventListener("click", function() {
+        let db_data = {};
+
+        const value = new FormData(form);
+        const players = new FormData(formPlayer);
+        if (value.get("title") == "" || value.get("image") == "" || value.get("date") == "" || value.get("type") == "" || value.get("rating") == "" || value.get("duration") == "" || value.get("creator") == "" || value.get("casting") == "" || value.get("trailer") == "" || value.get("description") == "" || value.get("player_0") == "") {
+            document.querySelector(".error-container").style.display = "block";
+        } else {
+            let players_list = []
+            for (let i = 0; i < nbOtherFields; i++) {
+                players_list.push({id: i+1, episodes: players.get(`player_${i}`).split("\n").map((item, index)=>{ return {id:index+1, url:item} }) })
+            }
+
+            db_data = {
+                name: value.get("title"),
+                img: value.get("image"),
+                date: {
+                    day: value.get("date").split("-")[2],
+                    month: value.get("date").split("-")[1],
+                    year: value.get("date").split("-")[0],
+                },
+                type: [value.get("type")],
+                rating: value.get("rating"),
+                duration: value.get("duration"),
+                creator: value.get("creator"),
+                casting: value.get("casting"),
+                description: value.get("description"),
+                videos: {
+                    trailer: value.get("trailer"),
+                    players: players_list
+                }
+            };
+        }
+
+        const children = [].slice.call(document.getElementById('drop-display').getElementsByTagName('*'), 0);
+        const genders = []
+        const arrayLength = children.length;
+        for (let i = 0; i < arrayLength; i++) {
+            const name = children[i].getAttribute("id");
+            if (name != null && name !== "") {
+                genders.push(name);
+            }
+        }
+        db_data.genre = genders
+
+        fetch('/anime/create', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                anime: db_data,
+            })
+        }).then(res => res.json()).then(data => {
+            console.log(data)
+        })
+    });
+
+</script>
 
 <%- include('../footer') -%>
 
 <style>
+
+    .remove-btn {
+        background-color: #f44444;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-bottom: 25px;
+    }
+
+    #add-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: fit-content;
+        height: fit-content;
+        background-color: #f5f5f5;
+        border: 1px solid #e0e0e0;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-bottom: 10px;
+        padding: 10px 20px;
+    }
 
     #title, #date, #casting, #creator, #description, #image, #duration, #trailer, #rating, .type {
         width: 100%;
@@ -153,7 +285,13 @@
         z-index: 100;
         display: block;
     }
+
+    .drop .drop-options {
+        display: none;
+    }
+
     .drop.open .drop-options {
+        display: block;
         z-index: 200;
         max-height: 200px;
     }
@@ -391,6 +529,17 @@
             border-width: 0px;
         }
     }
+
+    .error-container {
+        display: none;
+        border: 1px solid #c73c3c;
+        border-radius: 5px;
+        background-color: #ec827d;
+        color: white;
+        width: fit-content;
+        padding: 10px 20px;
+        margin-top: 10px;
+    }
 </style>
 <script>
 
@@ -432,7 +581,7 @@
                 this.html.parent = $.get(info.selector)[0].parentNode;
                 this.html.drop = $.template('<div class="drop"></div>');
                 this.html.dropDisplay = $.template(
-                    '<div class="drop-display">Display</div>'
+                    '<div class="drop-display" id="drop-display">Display</div>'
                 );
                 this.html.dropOptions = $.template(
                     '<div class="drop-options">Options</div>'
@@ -523,7 +672,7 @@
                     var childHTML = $.template(
                         '<span class="item ' +
                         select.state +
-                        '">' +
+                        '" id="'+option.value+'">' +
                         option.html +
                         "</span>"
                     );
@@ -615,6 +764,5 @@
         selector: "#gender",
         preselected: [0, 2]
     });
-    myDrop.toggle();
 
 </script>

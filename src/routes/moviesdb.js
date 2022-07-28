@@ -5,7 +5,7 @@ const movies = require('../config/movies');
 router.get('/', async (req, res) => {
     try {
         const page = parseInt(req.query.page) -1 || 0;
-        const limit = parseInt(req.query.limit) || 5;
+        const limit = parseInt(req.query.limit) || 99;
         const search = req.query.search || '';
         let sort = req.query.sort || 'rating';
         let genre = req.query.genre || 'All';
@@ -26,8 +26,8 @@ router.get('/', async (req, res) => {
         ]
 
         const typeOptions = [
-            "Movie",
-            "Serie"
+            "movie",
+            "serie"
         ]
 
         genre === "All" ? (genre = [...genreOptions]) : (genre = req.query.genre.split(','));
