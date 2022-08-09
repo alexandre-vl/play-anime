@@ -170,7 +170,11 @@
                 anime: db_data,
             })
         }).then(res => res.json()).then(data => {
-            console.log(data)
+            if (data) {
+                window.location.href = "/anime/?name=" + data.anime[0].name;
+            } else {
+                document.querySelector(".error-container").style.display = "block";
+            }
         })
     });
 
