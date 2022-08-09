@@ -23,7 +23,7 @@ router.post('/create', async (req, res) => {
     try {
         let result = await Movie.insertMany([req.body.anime])
         if (!result) return res.status(404).send('Not found')
-        res.json({anime: result})
+        res.json({anime: result[0]})
     } catch (error) {
         return res.status(404).send('Not found')
     }
@@ -35,7 +35,7 @@ router.post('/edit', async (req, res) => {
         if (!anime) return res.status(404).send('Not found')
         let result = await Movie.updateOne({name: req.body.anime.name}, {$set: {...req.body.anime}})
         if (!result) return res.status(404).send('Not found')
-        res.json({anime: result})
+        res.json({anime: req.body.anime})
     } catch (error) {
         return res.status(404).send('Not found')
     }

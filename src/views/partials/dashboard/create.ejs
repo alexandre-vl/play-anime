@@ -171,7 +171,7 @@
             })
         }).then(res => res.json()).then(data => {
             if (data) {
-                window.location.href = "/anime/?name=" + data.anime[0].name;
+                window.location.href = "/anime/?name=" + data.anime.name;
             } else {
                 document.querySelector(".error-container").style.display = "block";
             }
