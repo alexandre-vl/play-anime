@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const p = require('phin');
+const configAdmins = require('../config/admin.json');
 
 module.exports.fetchDb = async function fetchDb(filter = {}) {
     const request = await p({
@@ -26,4 +27,20 @@ module.exports.connect =  async function connect() {
         useNewUrlParser: true,
         useUnifiedTopology: true
     }).catch(err => {return undefined})
+}
+
+module.exports.isAuthenticated = function isAuthenticated(req, res, next) {
+    if (req.user) {
+        return next();
+    }
+    res.redirect('/');
+}
+
+module.exports.isAdmin = function isAdmin(req, res, next) {
+    if (req.user) {
+        if (configAdmins.admins.includes(req.user.discordId)) {
+            return next();
+        }
+    }
+    res.redirect('/');
 }

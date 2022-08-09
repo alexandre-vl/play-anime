@@ -17,7 +17,7 @@
             <div class="intro-title">
                 <h1><%=anime.name%></h1>
                 <div class="intro-subcase">
-                    <h2><%=anime.type[0]%></h2>
+                    <h2><%=anime.type[0] === "serie" ? "Serie" : "Movie" %></h2>
                     &middot;
                     <h2><%=anime.date.day%>/<%=anime.date.month%>/<%=anime.date.year%></h2>
                     &middot;

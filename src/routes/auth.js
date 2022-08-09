@@ -1,18 +1,10 @@
 const router = require('express').Router();
 const passport = require('passport');
 
-function isAuthenticated(req, res, next) {
-    if (req.user) {
-        return next();
-    }
-    res.redirect('/');
-}
-
-
 router.get('/' , passport.authenticate('discord'));
 router.get('/redirect', passport.authenticate('discord', {
     failureRedirect: '/',
-    successRedirect:'/dashboard' }),
+    successRedirect:'/' }),
     (req, res) => {
     if (res.statusCode !== 200) {
         return res.redirect('/auth');

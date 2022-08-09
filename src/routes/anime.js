@@ -31,10 +31,11 @@ router.post('/create', async (req, res) => {
 
 router.post('/edit', async (req, res) => {
     try {
-        let anime = await Movie.findOne({name: req.body.name})
-        res.render('partials/dashboard/edit', {user: req.user, logged: !!req.user, anime: anime})
-        console.log(res)
-
+        let anime = await Movie.findOne({name: req.body.anime.name})
+        if (!anime) return res.status(404).send('Not found')
+        let result = await Movie.updateOne({name: req.body.anime.name}, {$set: {...req.body.anime}})
+        if (!result) return res.status(404).send('Not found')
+        res.json({anime: result})
     } catch (error) {
         return res.status(404).send('Not found')
     }

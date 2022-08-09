@@ -2,16 +2,16 @@
 <%- include('../navbar') -%>
 
 <div class="container">
-    <h1>Add Anime</h1>
+    <h1>Edit Anime</h1>
     <form id="form-creation">
         <label for="title">Title</label>
-        <input type="text" id="title" name="title" placeholder="Demon slayer">
+        <input type="text" id="title" name="title" placeholder="Demon slayer" value="<%= anime.name%>">
 
         <label for="image">Image</label>
-        <input type="text" id="image" name="image" placeholder="https://www.nautiljon.com/images/anime/00/87/mini/kimetsu_no_yaiba_7878.jpg">
+        <input type="text" id="image" name="image" placeholder="https://www.nautiljon.com/images/anime/00/87/mini/kimetsu_no_yaiba_7878.jpg" value="<%= anime.img%>">
 
         <label for="date">Date</label>
-        <input id="date" type="date" name="date" placeholder="Publication date">
+        <input id="date" type="date" name="date" placeholder="Publication date" value="<%=anime.date.year%>-<%=anime.date.month.toString().length === 1 ? "0"+anime.date.month : anime.date.month%>-<%=anime.date.day.toString().length === 1 ? "0"+anime.date.day : anime.date.day%>">
 
         <label for="gender">Gender</label>
         <select multiple="multiple" id="gender">
@@ -31,48 +31,62 @@
         <div class="type">
             <div>
                 <input type="radio" id="movie" name="type" value="movie"
-                       checked>
+                       <%=anime.type[0] ==="movie" ? 'checked' : '' %>>
                 <label for="movie">Movie</label>
             </div>
             <div>
-                <input type="radio" id="serie" name="type" value="serie">
+                <input type="radio" id="serie" name="type" value="serie"
+                        <%=anime.type[0] ==="serie" ? 'checked' : '' %>>
                 <label for="serie">Serie</label>
             </div>
         </div>
 
         <label for="rating">Rating</label>
-        <input type="number" id="rating" name="rating" placeholder="9.6">
+        <input type="number" id="rating" name="rating" placeholder="9.6" value="<%=anime.rating%>">
 
         <label for="duration">Duration</label>
-        <input type="text" id="duration" name="duration" placeholder="1h20min or 24 (episodes)">
+        <input type="text" id="duration" name="duration" placeholder="1h20min or 24 (episodes)" value="<%=anime.duration%>">
 
         <label for="creator">Creator</label>
-        <input type="text" id="creator" name="creator" placeholder="Koyoharu Gotōge">
+        <input type="text" id="creator" name="creator" placeholder="Koyoharu Gotōge" value="<%=anime.creator%>">
 
         <label for="casting">Casting</label>
-        <input type="text" id="casting" name="casting" placeholder="ufotable">
+        <input type="text" id="casting" name="casting" placeholder="ufotable" value="<%=anime.casting%>">
 
         <label for="trailer">Trailer</label>
-        <input type="text" id="trailer" name="trailer" placeholder="https://www.youtube.com/watch?v=VQGCKyvzIM4">
+        <input type="text" id="trailer" name="trailer" placeholder="https://www.youtube.com/watch?v=VQGCKyvzIM4" value="<%=anime.videos.trailer%>">
 
         <label for="description">Description</label>
-        <textarea id="description" name="description" placeholder="Description" style="height:200px"></textarea>
+        <textarea id="description" name="description" placeholder="Description" style="height:200px"><%=anime.description%></textarea>
     </form>
 
     <form id="form-player">
         <div>
             <label for="description">Player 1</label>
-            <textarea id="description" name="player_0" placeholder="https://video.sibnet.ru/shell.php?videoid=4668331&#10;https://video.sibnet.ru/shell.php?videoid=4568339&#10;https://video.sibnet.ru/shell.php?videoid=4346361" style="height:200px"></textarea>
+            <textarea id="description" name="player_0"
+                      placeholder="https://video.sibnet.ru/shell.php?videoid=4668331&#10;https://video.sibnet.ru/shell.php?videoid=4568339&#10;https://video.sibnet.ru/shell.php?videoid=4346361"
+                      style="height:200px"
+            ><%=anime.videos.players.find(p=>p.id===1).episodes.map(e=>e.url).join("\n")%></textarea>
         </div>
-        <div id="other-fields"></div>
+        <div id="other-fields">
+            <%anime.videos.players.forEach(p=> { if(p.id===1) return;%>
+                <div>
+                    <label for="description">Player <%=p.id%></label>
+                    <textarea id="description" name="player_<%=p.id-1%>"
+                              placeholder="https://video.sibnet.ru/shell.php?videoid=4668331&#10;https://video.sibnet.ru/shell.php?videoid=4568339&#10;https://video.sibnet.ru/shell.php?videoid=4346361"
+                              style="height:200px"
+                    ><%=p.episodes.map(e=>e.url).join("\n")%></textarea>
+                </div>
+            <%})%>
+        </div>
     </form>
     <button id="add-btn">Add more player</button>
 
     <a class="button-create" id="display-btn">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
         </svg>
-        <p>Create</p>
+        <p>Update</p>
     </a>
 
     <div class="error-container">
@@ -87,7 +101,7 @@
     const formPlayer = document.getElementById("form-player");
     const displayBtn = document.getElementById("display-btn");
 
-    let nbOtherFields = 1;
+    let nbOtherFields = otherFields.children.length +1;
     addBtn.addEventListener("click", function() {
         const div = document.createElement("div");
         const label = document.createElement("label");
@@ -161,7 +175,7 @@
         }
         db_data.genre = genders
 
-        fetch('/anime/create', {
+        fetch('/anime/edit', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -170,7 +184,7 @@
                 anime: db_data,
             })
         }).then(res => res.json()).then(data => {
-            console.log(data)
+            return data;
         })
     });
 
@@ -350,16 +364,6 @@
         width: fit-content;
         color: #2f2f2f;
     }
-
-    .drop-display {
-
-
-    }
-
-    .item {
-
-    }
-
     .item svg {
         width: 15px;
         height: 15px;
@@ -628,7 +632,7 @@
                 this.clearStates();
                 var index = Number(element.dataset.index);
                 this.selected.forEach(function (select) {
-                    if (select.index == index && !select.removed) {
+                    if (select.index === index && !select.removed) {
                         select.removed = true;
                         select.state = "remove";
                     }
@@ -638,8 +642,8 @@
             },
             load: function () {
                 this.options = [];
-                for (var i = 0; i < this.html.options.length; i++) {
-                    var option = this.html.options[i];
+                for (let i = 0; i < this.html.options.length; i++) {
+                    const option = this.html.options[i];
                     this.options[i] = {
                         html: option.innerHTML,
                         value: option.value,
@@ -649,15 +653,15 @@
                 }
             },
             preselect: function () {
-                var that = this;
+                const that = this;
                 this.selected = [];
                 this.preselected.forEach(function (pre) {
                     that.selected.push({
-                        index: pre,
+                        index: that.options.indexOf(that.options.find(o=>o.value === pre)),
                         state: "add",
                         removed: false
                     });
-                    that.options[pre].state = "remove";
+                    that.options.find(o=>o.value === pre).state = "remove";
                 });
             },
             render: function () {
@@ -762,7 +766,8 @@
     //Run Please
     var myDrop = new drop({
         selector: "#gender",
-        preselected: [0, 2]
+        <% options_select = anime.genre.map(e=> {return e}) -%>
+        preselected: [ '<%- options_select.join("', '")%>' ]
     });
 
 </script>
