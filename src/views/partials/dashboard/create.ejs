@@ -130,21 +130,21 @@
             }
 
             db_data = {
-                name: value.get("title"),
-                img: value.get("image"),
+                name: value.get("title").trim(),
+                img: value.get("image").trim(),
                 date: {
-                    day: value.get("date").split("-")[2],
-                    month: value.get("date").split("-")[1],
-                    year: value.get("date").split("-")[0],
+                    day: value.get("date").split("-")[2].trim(),
+                    month: value.get("date").split("-")[1].trim(),
+                    year: value.get("date").split("-")[0].trim(),
                 },
                 type: [value.get("type")],
-                rating: value.get("rating"),
-                duration: value.get("duration"),
-                creator: value.get("creator"),
-                casting: value.get("casting"),
-                description: value.get("description"),
+                rating: value.get("rating").trim(),
+                duration: value.get("duration").trim(),
+                creator: value.get("creator").trim(),
+                casting: value.get("casting").trim(),
+                description: value.get("description").trim(),
                 videos: {
-                    trailer: value.get("trailer"),
+                    trailer: value.get("trailer").trim(),
                     players: players_list
                 }
             };

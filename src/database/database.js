@@ -40,7 +40,8 @@ module.exports.isAdmin = function isAdmin(req, res, next) {
     if (req.user) {
         if (configAdmins.admins.includes(req.user.discordId)) {
             return next();
-        }
+        } else
+            return res.redirect('/');
     }
     res.redirect('/');
 }

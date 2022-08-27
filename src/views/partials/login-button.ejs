@@ -17,9 +17,11 @@
         </a>
 
         <div class="navbar-dropdown">
-            <a class="navbar-item" href="/dashboard">
-                Dashboard
-            </a>
+            <% if (admins.includes(user.discordId)) { %>
+                <a class="navbar-item" href="/dashboard">
+                    Dashboard
+                </a>
+            <% } %>
             <a class="navbar-item" href="/dashboard/settings">
                 Settings
             </a>
