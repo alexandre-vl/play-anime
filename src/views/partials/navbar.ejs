@@ -29,10 +29,10 @@
         <div class="navbar-end">
             <div class="support-search">
                 <div class="search-bar">
-                    <div class="bar-container">
-                        <input type="text" placeholder="Fast search..." onkeyup="sendData(this)"/>
+                    <form class="bar-container" id="form-search">
+                        <input type="text" placeholder="Fast search..." id="searchbar" onkeyup="sendData(this)"/>
                         <section id="searchResults" ></section>
-                    </div>
+                    </form>
 
                 </div>
             </div>
@@ -45,6 +45,23 @@
 </nav>
 
 <script>
+    function searching() {
+        const searchbar = document.getElementById('searchbar');
+        const urlParams = new URLSearchParams(window.location.search);
+        urlParams.has('q') ? urlParams.set('q', searchbar.value) : urlParams.append('q', searchbar.value);
+        let match = searchbar.value.match(/^[a-zA-Z\d]+$/);
+        let match2 = searchbar.value.match(/\s*/)
+        if (match2[0] === searchbar.value) return;
+        if (match[0] === searchbar.value) {
+            window.history.replaceState(null, null, "/search?"+urlParams.toString().replaceAll("+", "%20"));
+            window.location.reload();
+        }
+    }
+    document.getElementById("form-search").addEventListener('submit', function (event) {
+        event.preventDefault();
+        searching()
+    });
+
     function sendData(e) {
         const searchResults = document.getElementById('searchResults');
         let match = e.value.match(/^[a-zA-Z\d]+$/);
@@ -55,7 +72,7 @@
             return;
         }
         if (match[0] === e.value) {
-            fetch('/search', {
+            fetch('/fastsearch', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

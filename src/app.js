@@ -26,7 +26,8 @@ app.use(cors());
 const authRoute = require('./routes/auth');
 const dashboardRoute = require('./routes/dashboard');
 const movieDbRoute = require('./routes/moviesdb');
-const searchRoute = require('./routes/search');
+const fastsearchRoute = require('./routes/fastsearch');
+const searchRoute = require('./routes/search')
 const homeRoute = require('./routes/home');
 const animeRoute = require('./routes/anime');
 const seriesRoute = require('./routes/series');
@@ -57,6 +58,7 @@ app.use(passport.session());
 app.use('/auth', authRoute);
 app.use('/dashboard', dashboardRoute);
 app.use('/api', movieDbRoute);
+app.use('/fastsearch', fastsearchRoute);
 app.use('/search', searchRoute);
 app.use('/anime', animeRoute);
 app.use('/series', seriesRoute);
