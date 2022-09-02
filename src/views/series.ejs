@@ -10,7 +10,7 @@
             <% data.series.forEach((item) => { %>
             <div class="series-list-item">
                 <a href="/anime/?name=<%=item.name%>">
-                    <img src="<%=item.img%>" alt="Image" class="series-list-img">
+                    <img src="<%=item.img%>" alt="Image" class="series-list-img" loading="lazy">
                     <p><%=item.name%></p>
                 </a>
             </div>
