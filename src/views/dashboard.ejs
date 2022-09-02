@@ -14,9 +14,15 @@
 </div>
 
 <div class="is-flex is-flex-direction-row is-flex-wrap-wrap is-justify-content-center is-8 p-6" style="gap: 50px">
-    <% movies.forEach((movie) => { %>
-        <%- include('partials/dashboard/movies', { movie }) -%>
-    <% }) %>
+    <% if (movies.length > 1) {%>
+        <% movies.forEach((movie) => { %>
+            <%- include('partials/dashboard/movies', { movie }) -%>
+        <% }) %>
+    <% } else {%>
+            <div class="series-list-item">
+                <p style="color: #2f2f2f; text-align: center">Aucun résultat</p>
+            </div>
+    <% } %>
 </div>
 
 <script>
@@ -67,8 +73,6 @@
             document.querySelector(".card-"+id).style.display = "none";
         })
     }
-
-
 </script>
 
 <%- include('partials/footer') -%>

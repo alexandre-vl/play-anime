@@ -4,8 +4,10 @@ const Movie = require('../models/Movie');
 const config = require('../config/admin.json')
 
 router.get('/', isAuthenticated, isAdmin, async (req, res) => {
-    let movies = await Movie.find()
-    res.render('dashboard', {admins: config.admins, user: req.user, logged: !!req.user, movies: movies})
+    let search = req.query.q
+    let result = await Movie.find(search ? {name: {$regex: new RegExp(search.trim(), 'i')}} : {}).exec()
+    console.log(result)
+    res.render('dashboard', {admins: config.admins, user: req.user, logged: !!req.user, movies: result, search: search })
 })
 
 router.get('/settings' , isAuthenticated, (req, res) => {
