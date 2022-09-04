@@ -1,10 +1,11 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
 const p = require('phin');
 const configAdmins = require('../config/admin.json');
 
 module.exports.fetchDb = async function fetchDb(filter = {}) {
     const request = await p({
-        'url': 'http://localhost:3000/api/?' + new URLSearchParams(filter),
+        'url': 'http://localhost:'+process.env.PORT+'/api/?' + new URLSearchParams(filter),
         'parse': 'json'
     }).catch(err => {
         console.log(err)
