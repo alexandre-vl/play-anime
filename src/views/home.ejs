@@ -130,13 +130,13 @@
         <div class="splide__track">
             <ul class="splide__list">
                 <% data.movies.forEach((item) => { %>
-                <div class="splide__slide" style="position: relative">
-                    <a class="slide-brand-type" href="/<%=item.type[0]==="Serie"?"series":"movies"%>"><%=item.type[0].toUpperCase()%></a>
-                    <a href="/anime/?name=<%=item.name%>">
-                        <img src="<%=item.img%>" alt="Image" class="splide_slide_img" loading="lazy">
-                        <p><%=item.name%></p>
-                    </a>
-                </div>
+                    <div class="splide__slide" style="position: relative">
+                        <a class="slide-brand-type" href="/<%=item.type[0]==="Serie"?"series":"movies"%>"><%=item.type[0].toUpperCase()%></a>
+                        <a href="/anime/?name=<%=item.name%>">
+                            <img src="<%=item.img%>" alt="Image" class="splide_slide_img" loading="lazy">
+                            <p><%=item.name%></p>
+                        </a>
+                    </div>
 
                 <%})%>
             </ul>

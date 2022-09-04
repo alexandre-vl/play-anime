@@ -1,11 +1,14 @@
+require('dotenv').config();
 const router = require('express').Router();
 const Movie = require('../models/Movie');
 const mongodb = require("mongodb");
 const config = require('../config/admin.json')
+const passport = require('passport');
 
 router.get('/', async (req, res) => {
     let result = await Movie.find({name: req.query.name})
     if (result.length < 1) return res.status(404).send('Not found')
+    if ((result[0].require_join && ((req.user && !req.user.guilds.find(g=>g.id===process.env.SERVER_ID)) || !req.user))) return res.render('mustjoin', {admins: config.admins, user: req.user, logged: !!req.user, anime: result[0], temp: {}, join_invite: process.env.INVITE_URL})
     res.render('anime', {admins: config.admins, user: req.user, logged: !!req.user, anime: result[0], temp: {}})
 })
 

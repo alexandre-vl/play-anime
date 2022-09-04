@@ -18,7 +18,8 @@ const movieSchema = new mongoose.Schema({
   videos: {
     trailer: {type: String, required: true},
     players: {type: Array, required: true},
-  }
+  },
+  require_join: {type: Boolean, required: true},
 })
 
 module.exports = mongoose.model('movie', movieSchema);

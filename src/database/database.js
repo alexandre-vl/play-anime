@@ -26,7 +26,7 @@ module.exports.connect =  async function connect() {
     return await mongoose.connect(process.env.MONGODB_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true
-    }).catch(err => {return undefined})
+    }).catch(err => {return console.log(err)})
 }
 
 module.exports.isAuthenticated = function isAuthenticated(req, res, next) {

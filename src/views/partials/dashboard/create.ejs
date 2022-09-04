@@ -57,6 +57,18 @@
 
         <label for="description">Description</label>
         <textarea id="description" name="description" placeholder="Description" style="height:200px"></textarea>
+
+        <label for="join">Require Join Discord Server</label>
+        <div class="join">
+            <div>
+                <input type="radio" id="true" name="join" value="true">
+                <label for="true">Yes</label>
+            </div>
+            <div>
+                <input type="radio" id="false" name="join" value="false" checked>
+                <label for="false">No</label>
+            </div>
+        </div>
     </form>
 
     <form id="form-player">
@@ -146,7 +158,8 @@
                 videos: {
                     trailer: value.get("trailer").trim(),
                     players: players_list
-                }
+                },
+                require_join: value.get("join") !== "false"
             };
         }
 
@@ -208,7 +221,7 @@
         padding: 10px 20px;
     }
 
-    #title, #date, #casting, #creator, #description, #image, #duration, #trailer, #rating, .type {
+    #title, #date, #casting, #creator, #description, #image, #duration, #trailer, #rating, .type, .join {
         width: 100%;
         padding: 12px;
         border: 1px solid #ccc;
