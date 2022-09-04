@@ -3,10 +3,19 @@ const { isAuthenticated, isAdmin } = require('../database/database');
 const Movie = require('../models/Movie');
 const config = require('../config/admin.json')
 
+function isImgUrl(url) {
+    const img = new Image();
+    img.src = url;
+    return new Promise((resolve) => {
+        img.onerror = () => resolve(false);
+        img.onload = () => resolve(true);
+    });
+}
+
 router.get('/', isAuthenticated, isAdmin, async (req, res) => {
     let search = req.query.q
     let result = await Movie.find(search ? {name: {$regex: new RegExp(search.trim(), 'i')}} : {}).exec()
-    console.log(result)
+    result.map(async (movie) => {movie.img = await isImgUrl(movie.img) ? movie.img : 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Flag_of_None.svg/2560px-Flag_of_None.svg.png'})
     res.render('dashboard', {admins: config.admins, user: req.user, logged: !!req.user, movies: result, search: search })
 })
 

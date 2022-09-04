@@ -23,7 +23,7 @@ module.exports.shuffleArray = function shuffleArray(array) {
     return array;
 }
 
-module.exports.connect =  async function connect() {
+module.exports.connect = async function connect() {
     return await mongoose.connect(process.env.MONGODB_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true
