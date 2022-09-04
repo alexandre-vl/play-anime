@@ -14,7 +14,7 @@
 </div>
 
 <div class="is-flex is-flex-direction-row is-flex-wrap-wrap is-justify-content-center is-8 p-6" style="gap: 50px">
-    <% if (movies.length > 1) {%>
+    <% if (movies.length > 0) {%>
         <% movies.forEach((movie) => { %>
             <%- include('partials/dashboard/movies', { movie }) -%>
         <% }) %>
