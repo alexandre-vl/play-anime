@@ -90,6 +90,15 @@
                               placeholder="https://video.sibnet.ru/shell.php?videoid=4668331&#10;https://video.sibnet.ru/shell.php?videoid=4568339&#10;https://video.sibnet.ru/shell.php?videoid=4346361"
                               style="height:200px"
                     ><%=p.episodes.map(e=>e.url).join("\n")%></textarea>
+                    <button id="remove-btn-<%=p.id+1%>" class="remove-btn">Remove</button>
+                    <script>
+                        let button = document.getElementById("remove-btn-<%=p.id+1%>");
+                        let div = button.parentElement;
+                        button.addEventListener("click", function() {
+                            div.remove();
+                            nbOtherFields--;
+                        });
+                    </script>
                 </div>
             <%})%>
         </div>
