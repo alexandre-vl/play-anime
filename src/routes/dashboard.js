@@ -3,15 +3,6 @@ const { isAuthenticated, isAdmin } = require('../database/database');
 const Movie = require('../models/Movie');
 const config = require('../config/admin.json')
 
-function isImgUrl(url) {
-    const img = new Image();
-    img.src = url;
-    return new Promise((resolve) => {
-        img.onerror = () => resolve(false);
-        img.onload = () => resolve(true);
-    });
-}
-
 router.get('/', isAuthenticated, isAdmin, async (req, res) => {
     let search = req.query.q
     let result = await Movie.find(search ? {name: {$regex: new RegExp(search.trim(), 'i')}} : {}).exec()

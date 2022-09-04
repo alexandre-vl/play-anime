@@ -93,6 +93,8 @@
 </div>
 
 <script>
+
+
     const addBtn = document.getElementById("add-btn");
     const otherFields = document.getElementById("other-fields");
     const form = document.getElementById("form-creation");
@@ -133,9 +135,15 @@
 
         const value = new FormData(form);
         const players = new FormData(formPlayer);
+        function isImgUrl(url) {
+            return /\.(jpg|jpeg|png|webp|avif|gif)$/.test(url)
+        }
         if (value.get("title") == "" || value.get("image") == "" || value.get("date") == "" || value.get("type") == "" || value.get("rating") == "" || value.get("duration") == "" || value.get("creator") == "" || value.get("casting") == "" || value.get("trailer") == "" || value.get("description") == "" || value.get("player_0") == "") {
             document.querySelector(".error-container").style.display = "block";
-        } else {
+        }else if (!isImgUrl(value.get("image"))) {
+            document.querySelector(".error-container").style.display = "block";
+            document.querySelector(".error-message").innerHTML = "Error! Please enter a valid image url";
+        }else {
             let players_list = []
             for (let i = 0; i < nbOtherFields; i++) {
                 players_list.push({id: i+1, episodes: players.get(`player_${i}`).split("\n").map((item, index)=>{ return {id:index+1, url:item} }) })
