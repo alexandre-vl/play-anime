@@ -27,19 +27,17 @@
                     perPage: 5.5,
                     perMove: 1,
                     autoplay: true,
-                    autoplaySpeed: 3000,
-                    responsive: true,
-                    speed: 1000,
-                    drag: true,
-                    swipe: true,
-                    touch: true,
-                    keyboard: true,
-                    rewind : true,
-                    scrollbar: true,
-                    scrollbarType: 'slide',
+                    interval: 8000,
+                    rewind: true,
+                    rewindByDrag: true,
+                    pagination: false,
+                    lazyLoad: 'nearby',
+                    flickMaxPages: 3,
+                    updateOnMove: true,
+                    throttle: 300,
                     breakpoints: {
                         640: {
-                            perPage: 1.6,
+                            perPage: 1.5,
 
                         },
                         768: {
@@ -87,18 +85,18 @@
                     type: 'loop',
                     perPage: 5.5,
                     perMove: 1,
-                    responsive: true,
-                    speed: 1000,
-                    drag: true,
-                    swipe: true,
-                    touch: true,
-                    keyboard: true,
-                    rewind : true,
-                    scrollbar: true,
-                    scrollbarType: 'slide',
+                    autoplay: true,
+                    interval: 8000,
+                    rewind: true,
+                    rewindByDrag: true,
+                    pagination: false,
+                    lazyLoad: 'nearby',
+                    flickMaxPages: 3,
+                    updateOnMove: true,
+                    throttle: 300,
                     breakpoints: {
                         640: {
-                            perPage: 1.6,
+                            perPage: 1.5,
 
                         },
                         768: {
@@ -130,13 +128,13 @@
         <div class="splide__track">
             <ul class="splide__list">
                 <% data.movies.forEach((item) => { %>
-                    <div class="splide__slide" style="position: relative">
-                        <a class="slide-brand-type" href="/<%=item.type[0]==="Serie"?"series":"movies"%>"><%=item.type[0].toUpperCase()%></a>
-                        <a href="/anime/?name=<%=item.name%>">
-                            <img src="<%=item.img%>" alt="Image" class="splide_slide_img" loading="lazy">
-                            <p><%=item.name%></p>
-                        </a>
-                    </div>
+                <div class="splide__slide" style="position: relative">
+                    <a class="slide-brand-type" href="/<%=item.type[0]==="Serie"?"series":"movies"%>"><%=item.type[0].toUpperCase()%></a>
+                    <a href="/anime/?name=<%=item.name%>">
+                        <img src="<%=item.img%>" alt="Image" class="splide_slide_img" loading="lazy">
+                        <p><%=item.name%></p>
+                    </a>
+                </div>
 
                 <%})%>
             </ul>
@@ -147,29 +145,30 @@
                     type: 'loop',
                     perPage: 5.5,
                     perMove: 1,
-                    responsive: true,
-                    speed: 1000,
-                    drag: true,
-                    swipe: true,
-                    keyboard: true,
-                    rewind : true,
-                    scrollbar: true,
-                    scrollbarType: 'slide',
+                    autoplay: true,
+                    interval: 8000,
+                    rewind: true,
+                    rewindByDrag: true,
+                    pagination: false,
+                    lazyLoad: 'nearby',
+                    flickMaxPages: 3,
+                    updateOnMove: true,
+                    throttle: 300,
                     breakpoints: {
-                        550: {
-                            perPage: 1.6,
+                        640: {
+                            perPage: 1.5,
 
                         },
                         768: {
-                            perPage: 2.2,
+                            perPage: 2,
 
                         },
-                        1130: {
-                            perPage: 3.2,
+                        1024: {
+                            perPage: 3,
 
                         },
                         1440: {
-                            perPage: 5.2,
+                            perPage: 5,
 
                         },
                     },
